@@ -39,7 +39,6 @@ public class SystemMessage {
 	public static void allArguments(String arg[]) {
 		for (int i = 0; i < arg.length; i++) {
 			eMessage("Argument " + (i + 1) + " <" + arg[i] + ">");
-
 		}
 	}
 }
