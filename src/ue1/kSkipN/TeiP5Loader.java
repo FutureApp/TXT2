@@ -58,14 +58,13 @@ public class TeiP5Loader {
 			doc = dBuilder.parse(file);
 			doc.getDocumentElement().normalize();
 		} catch (SAXException | IOException | ParserConfigurationException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		return doc;
 	}
 
 	/**
-	 * Loads the content of a file into a string
+	 * Loads the content of a file into a string.
 	 * 
 	 * @param file
 	 *            The file.
@@ -77,7 +76,7 @@ public class TeiP5Loader {
 			readFileToString = FileUtils.readFileToString(file, Encoding.getDefaultEncoding());
 		} catch (IOException e) {
 			e.printStackTrace();
-			printError("Couldn't load from Tei5Document. Location <" + file.getAbsolutePath() + ">");
+			printError("Couldn't read from Tei5Document. Location <" + file.getAbsolutePath() + ">");
 		}
 		return readFileToString;
 	}
