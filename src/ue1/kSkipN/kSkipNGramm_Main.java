@@ -1,6 +1,7 @@
 package ue1.kSkipN;
 
 import java.io.File;
+import java.util.ArrayList;
 
 import xgeneral.modules.Encoding;
 import xgeneral.modules.Pather;
@@ -20,22 +21,27 @@ public class kSkipNGramm_Main {
 		arg = args;
 		validateInput();
 		executeSkipNGramm();
-		
-		
-		
-		
-		
+
 	}
 
 	private static void executeSkipNGramm() {
-		String pathToFileOfContent = 
-		Integer ngramms = 2; 
-		Integer kgramms = 0;
+		String pathToContent = Pather.toDemoData;
+		Integer ngramms = 3;
+		Integer kgramms = 1;
 		File locationToSave = new File(Pather.toTestTask);
-		File fileOfContent = new File()
+
+		File fileOfContent = new File(pathToContent);
+		TeiP5 teiData = TeiP5Loader.loadTei5Document(fileOfContent);
+		ArrayList<ArrayList<String>> extractS = teiData.extractS();
 		
+		for (ArrayList<String> arrayList : extractS) {
+			teiData.createKNGramm(ngramms,kgramms, arrayList);
+		}
 		
+		//KNGramm gramms = new KNGramm(teiData, locationToSave);
+		//gramms.abstarctWordsBoarderBySentence();
 		
+
 	}
 
 	/**
@@ -43,7 +49,7 @@ public class kSkipNGramm_Main {
 	 * then pass else print usage() and terminate program with exit-code 2.
 	 */
 	public static void validateInput() {
-		if (arg.length < 3) {
+		if (arg.length < 0) {
 			SystemMessage.eMessage("More input is needed");
 			System.out.println();
 			for (int i = 0; i < arg.length; i++) {

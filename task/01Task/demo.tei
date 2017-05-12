@@ -1,5 +1,5 @@
 <TEI>
-    <s>
+<s>
         <w lemma="A">A</w>
         <w lemma="B">B</w>
         <w lemma="C">C</w>
@@ -11,4 +11,5 @@
         <w lemma="I">I</w>
         <w lemma="J">J</w>
     </s>
+   
 </TEI>
