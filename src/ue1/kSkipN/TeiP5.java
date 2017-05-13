@@ -21,6 +21,7 @@ public class TeiP5 {
 		super();
 		this.content = content;
 	}
+	
 
 	/**
 	 * Extracts sentences.

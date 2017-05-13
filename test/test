@@ -1,0 +1,26 @@
+<TEI>
+    <s>
+        <w lemma="1">A</w>
+        <w lemma="2">B</w>
+        <w lemma="3">C</w>
+        <w lemma="4">D</w>
+        <w lemma="5">E</w>
+        <w lemma="6">F</w>
+        <w lemma="7">G</w>
+        <w lemma="8">H</w>
+        <w lemma="9">I</w>
+        <w lemma="10">J</w>
+    </s>
+    <s>
+        <w lemma="11">A</w>
+        <w lemma="12">B</w>
+        <w lemma="C">C</w>
+        <w lemma="D">D</w>
+        <w lemma="E">E</w>
+        <w lemma="F">F</w>
+        <w lemma="G">G</w>
+        <w lemma="H">H</w>
+        <w lemma="I">I</w>
+        <w lemma="J">J</w>
+    </s>
+</TEI>
