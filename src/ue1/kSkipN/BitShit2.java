@@ -1,43 +1,25 @@
 package ue1.kSkipN;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 
-public class BitShit {
+public class BitShit2 {
 
-	public static ArrayList<ArrayList<Integer>> generateIndexList(int n, int k) {
+	public static void main(String[] args) {
+
+		int n = 2;
+		int k = 1;
+
 		int startNumber = generateStartNumber(n);
 		int endNumber = generateEndNumber(n, k);
-		return generateIndexLists(startNumber, endNumber, n);
-	}
 
-	public static HashMap<String, ArrayList<ArrayList<Integer>>> generateNeededIndexList(int n, int k) {
-		HashMap<String, ArrayList<ArrayList<Integer>>> result = new HashMap<>();
-		for (int i = 0; i <= k; i++) {
-			ArrayList<ArrayList<Integer>> indexList = generateIndexList(n, i);
-			String key = n + "," + i;
-			result.put(key, indexList);
-			System.out.println("PUT: "+key +" "+indexList);
-			
-		}
-		return result;
-	}
+		System.out.println("Start " + startNumber);
+		System.out.println("End " + endNumber);
 
-	private static ArrayList<ArrayList<Integer>> generateIndexLists(int startNumber, int endNumber, int n) {
-		ArrayList<ArrayList<Integer>> result = new ArrayList<>();
-		for (int i = startNumber; i <= endNumber; i++) {
-			String reverse = new StringBuilder(Integer.toBinaryString(i)).reverse().toString();
-			ArrayList<Integer> tempResult = new ArrayList<>();
+		System.out.println("Start as: " + returnXAsString(startNumber));
+		System.out.println("End as: " + returnXAsString(endNumber));
 
-			for (int j = 0; j < reverse.length(); j++) {
-				if (reverse.charAt(j) == '1')
-					tempResult.add(j);
-
-			}
-			if (n == tempResult.size())
-				result.add(tempResult);
-		}
-		return result;
+		ArrayList<ArrayList<Integer>> indexList = generateIndexList(startNumber, endNumber, n);
+		System.out.println(indexList);
 	}
 
 	private static ArrayList<ArrayList<Integer>> generateIndexList(int startNumber, int endNumber, int n) {
@@ -46,7 +28,7 @@ public class BitShit {
 		for (int number = startNumber; number <= endNumber; number++) {
 
 			ArrayList<Integer> indexList = generateList(number);
-			if (indexList.size() == n)
+			if(indexList.size()==n)
 				list.add(indexList);
 		}
 		return list;
@@ -54,12 +36,11 @@ public class BitShit {
 
 	private static ArrayList<Integer> generateList(int number) {
 		ArrayList<Integer> result = new ArrayList<>();
-		String valueAsString = new StringBuilder(Integer.toBinaryString(number)).reverse().toString();
-		System.out.println("String " + valueAsString);
+		String valueAsString = new StringBuilder(Integer.toBinaryString(number)).reverse().toString() ;
+		System.out.println("String "+valueAsString);
 		for (int i = 0; i < valueAsString.length(); i++) {
-			if (valueAsString.charAt(i) == '1')
-				;
-			result.add(i);
+			if (valueAsString.charAt(i) == '1');
+				result.add(i);
 		}
 		return result;
 	}
