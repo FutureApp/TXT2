@@ -10,7 +10,6 @@ import java.util.List;
 
 import xgeneral.modules.Checker;
 import xgeneral.modules.Encoding;
-import xgeneral.modules.Pather;
 import xgeneral.modules.SymboleClazz;
 import xgeneral.modules.SystemMessage;
 import xgeneral.modules.Writer;

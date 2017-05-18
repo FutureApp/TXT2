@@ -55,10 +55,6 @@ public class IndexListGenerator {
 		return result;
 	}
 
-	private static String returnXAsString(int number) {
-		return Integer.toBinaryString(number);
-	}
-
 	private static int generateEndNumber(int n, int k) {
 		String result = generateX_1(n);
 		for (int i = n; i < (n + k); i++) {
@@ -84,19 +80,18 @@ public class IndexListGenerator {
 	public void genereatekSkipNGramm(ArrayList<String> sentence) {
 		ArrayList<ArrayList<String>> result = new ArrayList<>();
 		int maxWindowSize = n + k;
-		int minWindowSize = n;
-		int actSize = minWindowSize;
-		
+
 		splitSentennceByWindowSize(maxWindowSize, sentence);
-		
-//		for (int i = minWindowSize; i < maxWindowSize + 1; i++) {
-//			for (int x = 0; x < sentence.size() - i + 1; x++) {
-//				List<String> subList = sentence.subList(x, x + minWindowSize);
-//				ArrayList<ArrayList<String>> grammByIndexList = getGrammByIndexList(subList);
-//				System.out.print(subList + " " + grammByIndexList);
-//				System.out.println();
-//			}
-//		}
+
+		// for (int i = minWindowSize; i < maxWindowSize + 1; i++) {
+		// for (int x = 0; x < sentence.size() - i + 1; x++) {
+		// List<String> subList = sentence.subList(x, x + minWindowSize);
+		// ArrayList<ArrayList<String>> grammByIndexList =
+		// getGrammByIndexList(subList);
+		// System.out.print(subList + " " + grammByIndexList);
+		// System.out.println();
+		// }
+		// }
 
 		System.out.println(result + " " + result.size());
 
@@ -104,8 +99,8 @@ public class IndexListGenerator {
 
 	private ArrayList<List<String>> splitSentennceByWindowSize(int actSize, ArrayList<String> sentence) {
 		ArrayList<List<String>> semiList = new ArrayList<>();
-		for (int i = 0; i <= sentence.size() - actSize ; i++) {
-			List<String> subList = sentence.subList(i, i+actSize);
+		for (int i = 0; i <= sentence.size() - actSize; i++) {
+			List<String> subList = sentence.subList(i, i + actSize);
 			semiList.add(subList);
 		}
 		return semiList;

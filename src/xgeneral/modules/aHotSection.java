@@ -1,27 +1,13 @@
 package xgeneral.modules;
 
-import java.io.File;
 import java.io.IOException;
-import java.util.ArrayList;
 
 import javax.xml.parsers.ParserConfigurationException;
 
 import org.xml.sax.SAXException;
 
-import ue1.kSkipN.old.TeiP5Loader;
-
 public class aHotSection {
 	public static void main(String[] args) throws ParserConfigurationException, SAXException, IOException {
-		int countBit = 0;
-		ArrayList numbers = new ArrayList<>();
-		for (int i = 0; i < 3; i++){
-			if(NumberOfSetBits(i)== 3 ){
-				numbers.add(i);
-				countBit++;
-			}
-		}
-		System.out.println(numbers);
-		System.out.println(countBit);
 	}
 
 	public static int NumberOfSetBits(int i) {

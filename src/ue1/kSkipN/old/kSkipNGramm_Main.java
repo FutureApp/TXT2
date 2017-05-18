@@ -33,7 +33,6 @@ public class kSkipNGramm_Main {
 		String pathToContent = Pather.toDemoData;
 		Integer ngramms = 3;
 		Integer kgramms = 4;
-		File locationToSave = new File(Pather.toTestTask);
 
 		File fileOfContent = new File(pathToContent);
 		TeiP5 teiData = TeiP5Loader.loadTei5Document(fileOfContent);

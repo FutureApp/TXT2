@@ -17,8 +17,8 @@ public class BitShit {
 			ArrayList<ArrayList<Integer>> indexList = generateIndexList(n, i);
 			String key = n + "," + i;
 			result.put(key, indexList);
-			System.out.println("PUT: "+key +" "+indexList);
-			
+			System.out.println("PUT: " + key + " " + indexList);
+
 		}
 		return result;
 	}
@@ -38,34 +38,6 @@ public class BitShit {
 				result.add(tempResult);
 		}
 		return result;
-	}
-
-	private static ArrayList<ArrayList<Integer>> generateIndexList(int startNumber, int endNumber, int n) {
-		ArrayList<ArrayList<Integer>> list = new ArrayList<>();
-
-		for (int number = startNumber; number <= endNumber; number++) {
-
-			ArrayList<Integer> indexList = generateList(number);
-			if (indexList.size() == n)
-				list.add(indexList);
-		}
-		return list;
-	}
-
-	private static ArrayList<Integer> generateList(int number) {
-		ArrayList<Integer> result = new ArrayList<>();
-		String valueAsString = new StringBuilder(Integer.toBinaryString(number)).reverse().toString();
-		System.out.println("String " + valueAsString);
-		for (int i = 0; i < valueAsString.length(); i++) {
-			if (valueAsString.charAt(i) == '1')
-				;
-			result.add(i);
-		}
-		return result;
-	}
-
-	private static String returnXAsString(int number) {
-		return Integer.toBinaryString(number);
 	}
 
 	private static int generateEndNumber(int n, int k) {

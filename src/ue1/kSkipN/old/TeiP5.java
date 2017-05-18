@@ -1,10 +1,7 @@
 package ue1.kSkipN.old;
 
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.List;
-
-import javax.swing.plaf.synth.SynthSpinnerUI;
 
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
