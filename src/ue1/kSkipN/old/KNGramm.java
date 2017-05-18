@@ -1,4 +1,4 @@
-package ue1.kSkipN;
+package ue1.kSkipN.old;
 
 import java.io.File;
 import java.lang.reflect.Array;

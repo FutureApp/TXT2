@@ -1,4 +1,4 @@
-package ue1.kSkipN;
+package ue1.kSkipN.old;
 
 import java.io.File;
 import java.util.ArrayList;
@@ -6,8 +6,6 @@ import java.util.Collections;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
-import java.util.SortedSet;
-import java.util.TreeSet;
 
 import xgeneral.modules.Encoding;
 import xgeneral.modules.Pather;

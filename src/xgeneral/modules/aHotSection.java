@@ -8,7 +8,7 @@ import javax.xml.parsers.ParserConfigurationException;
 
 import org.xml.sax.SAXException;
 
-import ue1.kSkipN.TeiP5Loader;
+import ue1.kSkipN.old.TeiP5Loader;
 
 public class aHotSection {
 	public static void main(String[] args) throws ParserConfigurationException, SAXException, IOException {

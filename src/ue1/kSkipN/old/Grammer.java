@@ -1,14 +1,14 @@
-package ue1.kSkipN;
+package ue1.kSkipN.old;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class IndexListGenerator {
+public class Grammer {
 
 	int n, k;
 	ArrayList<ArrayList<Integer>> indexList;
 
-	public IndexListGenerator(int n, int k) {
+	public Grammer(int n, int k) {
 		super();
 		this.n = n;
 		this.k = k;
@@ -37,6 +37,7 @@ public class IndexListGenerator {
 		ArrayList<ArrayList<Integer>> list = new ArrayList<>();
 
 		for (int number = startNumber; number <= endNumber; number++) {
+
 			ArrayList<Integer> indexList = generateList(number);
 			if (indexList.size() == n)
 				list.add(indexList);

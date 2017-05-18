@@ -44,6 +44,18 @@ public class Writer {
 		}
 	}
 
+	public static void removeIfNeeded(File fileToSave) {
+		if (fileToSave.exists()) {
+			SystemMessage.wMessage(
+					"Result-file exists. File will be overwritten. File <" + fileToSave.getAbsolutePath() + ">");
+			try {
+				FileUtils.forceDelete(fileToSave);
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+		}
+	}
+
 	/**
 	 * Writes content of a hashMap to File.
 	 * 

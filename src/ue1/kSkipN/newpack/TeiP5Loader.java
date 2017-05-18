@@ -1,4 +1,4 @@
-package ue1.kSkipN;
+package ue1.kSkipN.newpack;
 
 import java.io.File;
 import java.io.IOException;
@@ -96,7 +96,7 @@ public class TeiP5Loader {
 	 * Print an error message.
 	 * 
 	 * @param content
-	 *            The content of the error-message.
+	 *            The error message.
 	 */
 	private static void printError(String content) {
 		SystemMessage.eMessage(content);

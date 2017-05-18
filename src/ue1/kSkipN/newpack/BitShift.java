@@ -1,28 +1,59 @@
-package ue1.kSkipN;
+package ue1.kSkipN.newpack;
 
 import java.util.ArrayList;
 import java.util.HashMap;
 
-public class BitShit {
+public class BitShift {
 
+	/**
+	 * Generates a specific index-list.
+	 * 
+	 * @param n
+	 *            n-gramm size
+	 * @param k
+	 *            Value of skip k
+	 * @return Index-list.
+	 */
 	public static ArrayList<ArrayList<Integer>> generateIndexList(int n, int k) {
 		int startNumber = generateStartNumber(n);
 		int endNumber = generateEndNumber(n, k);
 		return generateIndexLists(startNumber, endNumber, n);
 	}
 
+	/**
+	 * Generates the look-up-hashmap with the following structure: [ key ||
+	 * value ] -> [n,k || [[index0,index1,...],[index01,index02,...],...]
+	 * 
+	 * @param n
+	 *            n-gramm size.
+	 * @param k
+	 *            k-skip value.
+	 * @return Table containing look up-hashes.
+	 */
 	public static HashMap<String, ArrayList<ArrayList<Integer>>> generateNeededIndexList(int n, int k) {
 		HashMap<String, ArrayList<ArrayList<Integer>>> result = new HashMap<>();
 		for (int i = 0; i <= k; i++) {
 			ArrayList<ArrayList<Integer>> indexList = generateIndexList(n, i);
 			String key = n + "," + i;
 			result.put(key, indexList);
-			System.out.println("PUT: "+key +" "+indexList);
-			
+			System.out.println("PUT: " + key + " " + indexList);
+
 		}
 		return result;
 	}
 
+	/**
+	 * Generates the look up table. Usable to look up indexes to generate
+	 * n-gramms.
+	 * 
+	 * @param startNumber
+	 *            Start-index.
+	 * @param endNumber
+	 *            End-index.
+	 * @param n
+	 *            Window-size
+	 * @return List of list which contains index-values for access n-gramms.
+	 */
 	private static ArrayList<ArrayList<Integer>> generateIndexLists(int startNumber, int endNumber, int n) {
 		ArrayList<ArrayList<Integer>> result = new ArrayList<>();
 		for (int i = startNumber; i <= endNumber; i++) {
@@ -40,34 +71,16 @@ public class BitShit {
 		return result;
 	}
 
-	private static ArrayList<ArrayList<Integer>> generateIndexList(int startNumber, int endNumber, int n) {
-		ArrayList<ArrayList<Integer>> list = new ArrayList<>();
-
-		for (int number = startNumber; number <= endNumber; number++) {
-
-			ArrayList<Integer> indexList = generateList(number);
-			if (indexList.size() == n)
-				list.add(indexList);
-		}
-		return list;
-	}
-
-	private static ArrayList<Integer> generateList(int number) {
-		ArrayList<Integer> result = new ArrayList<>();
-		String valueAsString = new StringBuilder(Integer.toBinaryString(number)).reverse().toString();
-		System.out.println("String " + valueAsString);
-		for (int i = 0; i < valueAsString.length(); i++) {
-			if (valueAsString.charAt(i) == '1')
-				;
-			result.add(i);
-		}
-		return result;
-	}
-
-	private static String returnXAsString(int number) {
-		return Integer.toBinaryString(number);
-	}
-
+	/**
+	 * Calcs the value of the end-index. Used to det. the last value for
+	 * calculation.
+	 * 
+	 * @param n
+	 *            n-gramm size.
+	 * @param k
+	 *            Value of skip k.
+	 * @return Highest possible value for the indexes.
+	 */
 	private static int generateEndNumber(int n, int k) {
 		String result = generateX_1(n);
 		for (int i = n; i < (n + k); i++) {
@@ -76,12 +89,26 @@ public class BitShit {
 		return Integer.parseInt(result, 2);
 	}
 
+	/**
+	 * Calcs the value of the first-index.
+	 * 
+	 * @param n
+	 *            n-gramm size.
+	 * @return Lowest possible value for the indexes.
+	 */
 	private static int generateStartNumber(int n) {
 		String ones = generateX_1(n);
 
 		return Integer.parseInt(ones, 2);
 	}
 
+	/**
+	 * Generates a string containing x one's x= 4 -> '1111'
+	 * 
+	 * @param x
+	 *            Amount of '1'
+	 * @return String of x '1'
+	 */
 	private static String generateX_1(int x) {
 		String ones = "";
 		for (int i = 0; i < x; i++) {
@@ -89,27 +116,4 @@ public class BitShit {
 		}
 		return ones;
 	}
-
-	// private static int calcStartIndex(int n) {
-	// String ones = "";
-	// for (int i = 0; i < n; i++) {
-	// ones+="1";
-	// }
-	// return Integer.parseInt(ones,2);
-	// }
-	// private static String returnXOnes(int x) {
-	// String ones = "";
-	// for (int i = 0; i < x; i++) {
-	// ones+="1";
-	// }
-	// return ones;
-	// }
-	//
-	// private static int calcEndIndex(int numberOf1,int numberOfBits) {
-	// String ones = returnXOnes(numberOf1);
-	// for (int i = numberOf1; i < n; i++) {
-	// ones+="1";
-	// }
-	// return Integer.parseInt(ones,2);
-	// }
 }

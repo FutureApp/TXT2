@@ -1,14 +1,14 @@
-package ue1.kSkipN;
+package ue1.kSkipN.newpack;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class Grammer {
+public class IndexListGenerator {
 
 	int n, k;
 	ArrayList<ArrayList<Integer>> indexList;
 
-	public Grammer(int n, int k) {
+	public IndexListGenerator(int n, int k) {
 		super();
 		this.n = n;
 		this.k = k;
@@ -37,7 +37,6 @@ public class Grammer {
 		ArrayList<ArrayList<Integer>> list = new ArrayList<>();
 
 		for (int number = startNumber; number <= endNumber; number++) {
-
 			ArrayList<Integer> indexList = generateList(number);
 			if (indexList.size() == n)
 				list.add(indexList);
@@ -54,10 +53,6 @@ public class Grammer {
 				result.add(i);
 		}
 		return result;
-	}
-
-	private static String returnXAsString(int number) {
-		return Integer.toBinaryString(number);
 	}
 
 	private static int generateEndNumber(int n, int k) {
@@ -85,28 +80,14 @@ public class Grammer {
 	public void genereatekSkipNGramm(ArrayList<String> sentence) {
 		ArrayList<ArrayList<String>> result = new ArrayList<>();
 		int maxWindowSize = n + k;
-		int minWindowSize = n;
-		int actSize = minWindowSize;
-		
 		splitSentennceByWindowSize(maxWindowSize, sentence);
-		
-//		for (int i = minWindowSize; i < maxWindowSize + 1; i++) {
-//			for (int x = 0; x < sentence.size() - i + 1; x++) {
-//				List<String> subList = sentence.subList(x, x + minWindowSize);
-//				ArrayList<ArrayList<String>> grammByIndexList = getGrammByIndexList(subList);
-//				System.out.print(subList + " " + grammByIndexList);
-//				System.out.println();
-//			}
-//		}
-
 		System.out.println(result + " " + result.size());
-
 	}
 
 	private ArrayList<List<String>> splitSentennceByWindowSize(int actSize, ArrayList<String> sentence) {
 		ArrayList<List<String>> semiList = new ArrayList<>();
-		for (int i = 0; i <= sentence.size() - actSize ; i++) {
-			List<String> subList = sentence.subList(i, i+actSize);
+		for (int i = 0; i <= sentence.size() - actSize; i++) {
+			List<String> subList = sentence.subList(i, i + actSize);
 			semiList.add(subList);
 		}
 		return semiList;
