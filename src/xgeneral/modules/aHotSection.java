@@ -1,13 +1,35 @@
 package xgeneral.modules;
 
+import java.io.File;
 import java.io.IOException;
+import java.util.Arrays;
+import java.util.HashMap;
+import java.util.List;
 
 import javax.xml.parsers.ParserConfigurationException;
 
+import org.apache.commons.io.FileUtils;
 import org.xml.sax.SAXException;
 
 public class aHotSection {
 	public static void main(String[] args) throws ParserConfigurationException, SAXException, IOException {
+		HashMap<String, Integer> ab = new HashMap<>();
+		List<String> readLines = FileUtils.readLines(new File("./task/01Task01/lexikon.txt"),
+				Encoding.getDefaultEncoding());
+
+		for (String string : readLines) {
+			if(string.startsWith("#")) {}
+			else{
+				
+			String[] split = string.split("\t");
+			List<String> asList = Arrays.asList(split);
+			ab.put(asList.get(0), 1);
+			}
+		}
+		ab.forEach((a, b) -> {
+			System.out.println(a + " " + b);
+		});
+
 	}
 
 	public static int NumberOfSetBits(int i) {
