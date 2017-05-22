@@ -11,24 +11,21 @@ import javax.xml.parsers.ParserConfigurationException;
 import org.apache.commons.io.FileUtils;
 import org.xml.sax.SAXException;
 
+import ue1.sentiment.analyse.ExperimentCounter;
+
 public class aHotSection {
 	public static void main(String[] args) throws ParserConfigurationException, SAXException, IOException {
-		HashMap<String, Integer> ab = new HashMap<>();
-		List<String> readLines = FileUtils.readLines(new File("./task/01Task01/lexikon.txt"),
-				Encoding.getDefaultEncoding());
-
-		for (String string : readLines) {
-			if(string.startsWith("#")) {}
-			else{
-				
-			String[] split = string.split("\t");
-			List<String> asList = Arrays.asList(split);
-			ab.put(asList.get(0), 1);
-			}
-		}
-		ab.forEach((a, b) -> {
-			System.out.println(a + " " + b);
-		});
+		
+		ExperimentCounter counter = new ExperimentCounter(); 
+		
+		
+		counter.addOneRealPos();
+		counter.addOneRealPos();
+		counter. addOneRealNeg();
+		System.out.println(counter.getTruePos());
+		System.out.println(counter.getRealNeg());
+		System.out.println(counter.getTotal());
+		
 
 	}
 

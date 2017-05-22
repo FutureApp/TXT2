@@ -26,13 +26,15 @@ import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Map;
 
-import javax.crypto.Cipher;
-
 public class SentiWordNetDemoCode {
 
 	private Map<String, Double> dictionary;
 	private ArrayList<String> allPoSkeys;
 
+	/**
+	 * Constructs a look-up table by loading a specific lexicon to det. the polarity of a given word. 
+	 * @param pathToSWN Path to the lexicon
+	 */
 	public SentiWordNetDemoCode(String pathToSWN) {
 		// This is our main dictionary representation
 		dictionary = new HashMap<String, Double>();
@@ -130,26 +132,17 @@ public class SentiWordNetDemoCode {
 		}
 	}
 
+	/**
+	 * Returns the polarity for a specific word#pos pair.
+	 * 
+	 * @param word
+	 *            The word.
+	 * @param pos
+	 *            The POS
+	 * @return Polarity between -1(bad) and +1 (good)
+	 */
 	public double extract(String word, String pos) {
 		return dictionary.get(word + "#" + pos);
-	}
-
-	public static void main(String[] args) throws IOException {
-		// if(args.length<1) {
-		// System.err.println("Usage: java SentiWordNetDemoCode
-		// <pathToSentiWordNetFile>");
-		// return;
-		// }
-		//
-		// String pathToSWN = "./task/01Task01/lexikon.txt";
-		// SentiWordNetDemoCode sentiwordnet = new
-		// SentiWordNetDemoCode(pathToSWN);
-		//
-		// System.out.println("good#a "+sentiwordnet.extract("good", "a"));
-		// System.out.println("good#a "+sentiwordnet.extract("good", "a"));
-		// System.out.println("bad#a "+sentiwordnet.extract("bad", "a"));
-		// System.out.println("blue#a "+sentiwordnet.extract("blue", "a"));
-		// System.out.println("blue#n "+sentiwordnet.extract("blue", "n"));
 	}
 
 	public double getPolarity(ExameSentence sentence) {
@@ -158,22 +151,48 @@ public class SentiWordNetDemoCode {
 		return 0;
 	}
 
+	/**
+	 * Returns all tracked POS.
+	 * 
+	 * @return List of possible POS
+	 */
 	public ArrayList<String> getAllPossiblePOSkeys() {
 		return allPoSkeys;
 	}
 
-	public void extractOverAllPolarity(String cleanWord) {
+	/**
+	 * Extracts the polarity over all word#pos maps. This will be done by : (1)
+	 * extract all values for each word#pos map. (2) sum the values (3) divide
+	 * the sum by the number of word#pos maps.
+	 * 
+	 * @param cleanWord
+	 *            The word
+	 * @return Polarity between -1(bad) to 1 (good)
+	 */
+	public Double extractOverAllPolarity(String cleanWord) {
+		ArrayList<Double> resultList = new ArrayList<>();
+		Double resultPolarity = 0d;
 		double polarity = 0;
 		double counter = 0;
 
-		//TODO MAKE CALCULATION
 		for (String POSkey : allPoSkeys) {
 			String key = cleanWord + "#" + POSkey;
-			if(dictionary.containsKey(key)){
+			if (dictionary.containsKey(key)) {
+				// System.out.println("Contains " + key);
 				Double double1 = dictionary.get(key);
+				resultList.add(double1);
+				polarity += double1;
 				counter++;
+			} else {
+				// System.out.println("Not Containing " + key);
 			}
 		}
 
+		if (counter >= 1) {
+			resultPolarity = polarity / counter;
+		}
+		// System.out.println("Word :" + cleanWord + " -- result:" +
+		// resultPolarity);
+		return resultPolarity;
 	}
 }
