@@ -12,10 +12,10 @@ import xgeneral.modules.SymboleClazz.SentiLabel;
 
 public class SentiAnalyse {
 
-	SentiWordNetDemoCode sentiWordNet;
+	SentiWordNetDemo sentiWordNet;
 	String pathToInputFile;
 
-	public SentiAnalyse(SentiWordNetDemoCode sentiWordNet, String pathToInputFile) {
+	public SentiAnalyse(SentiWordNetDemo sentiWordNet, String pathToInputFile) {
 		super();
 		this.sentiWordNet = sentiWordNet;
 		this.pathToInputFile = pathToInputFile;

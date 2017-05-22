@@ -19,7 +19,7 @@ public class Extractor {
 		return label;
 	}
 
-	public static double getSentencePolarity(String line, SentiWordNetDemoCode sentiList) {
+	public static double getSentencePolarity(String line, SentiWordNetDemo sentiList) {
 		String[] split = line.split(" ");
 		double counter = 0;
 		double polaritySum = 0;
@@ -55,11 +55,10 @@ public class Extractor {
 //		System.out.println("Polarity Array" + polarityList);
 //		System.out.println("Polartiy Sum " + polaritySum);
 //		System.out.println("Polartiy  " + resultPolarity);
-//		System.out.println("END0");
 		return resultPolarity;
 	}
 
-	private static Double getWordPolarity(String word, SentiWordNetDemoCode sentiList) {
+	private static Double getWordPolarity(String word, SentiWordNetDemo sentiList) {
 		String cleanWord = word.replaceAll("[^a-zA-Z0-9]+", "");
 		Double polarityOfCleanWordOverAllPOS = sentiList.extractOverAllPolarity(cleanWord);
 		return polarityOfCleanWordOverAllPOS;

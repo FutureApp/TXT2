@@ -1,7 +1,6 @@
 package ue1.sentiment.analyse;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 import xgeneral.modules.SymboleClazz;

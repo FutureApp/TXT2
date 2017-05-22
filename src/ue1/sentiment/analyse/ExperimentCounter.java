@@ -77,7 +77,7 @@ public class ExperimentCounter {
 				if (labelToCheck.compareTo(SentiLabel.neg) == 0) {
 					addOneFalseNeg();
 
-					// Shouldn't happening
+					// What case is that. =)
 				} else {
 					System.out.println("ERROR ");
 					System.exit(1);
@@ -88,19 +88,19 @@ public class ExperimentCounter {
 				if (labelToCheck.compareTo(SentiLabel.pos) == 0) {
 					addOneFalsePos();
 
-					// Shouldn't happening
+					// What case is that. =)
 				} else {
 					System.out.println("ERROR ");
 					System.exit(1);
 				}
-				// Shouldn't happening
+				// What case is that. =)
 			} else {
 				System.out.println("ERROR ");
 				System.exit(1);
 			}
 
 		}
-		// What case is that. Shouldn't be happening
+		// What case is that. =)
 		else {
 			System.out.println("ERROR ");
 			System.exit(1);

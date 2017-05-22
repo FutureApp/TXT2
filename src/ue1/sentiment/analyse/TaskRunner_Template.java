@@ -8,11 +8,8 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-import org.omg.CORBA.SystemException;
-
 import xgeneral.modules.Checker;
 import xgeneral.modules.Encoding;
-import xgeneral.modules.MyoWriter;
 import xgeneral.modules.SymboleClazz.SentiLabel;
 import xgeneral.modules.SystemMessage;
 import xgeneral.modules.Writer;
@@ -49,7 +46,7 @@ public class TaskRunner_Template {
 		// Processing
 		System.out.println("-- Processing --");
 		System.out.println("-- Loading senti-list --");
-		SentiWordNetDemoCode sentiwordnet = new SentiWordNetDemoCode(pathToLexiconFile);
+		SentiWordNetDemo sentiwordnet = new SentiWordNetDemo(pathToLexiconFile);
 		System.out.println("-- Loading complete --");
 		System.out.println("-- Starting analysis --");
 		SentiAnalyse analyse = new SentiAnalyse(sentiwordnet, pathToInputFile);
@@ -99,12 +96,12 @@ public class TaskRunner_Template {
 		Boolean binaryExecution = (string.compareTo("bin") == 0) ? true : false;
 		return binaryExecution;
 	}
-
-	private static double getPolarity(ExameSentence sentence, SentiWordNetDemoCode sentiwordnet) {
+	@Deprecated
+	public static double getPolarity(ExameSentence sentence, SentiWordNetDemo sentiwordnet) {
 		return sentiwordnet.getPolarity(sentence);
 	}
 
-	private static ArrayList<ExameSentence> createExameSentenceList(String pathToInputFile) {
+	public static ArrayList<ExameSentence> createExameSentenceList(String pathToInputFile) {
 		ArrayList<ExameSentence> result = new ArrayList<>();
 		BufferedReader csv = null;
 		int missedImport = 0;

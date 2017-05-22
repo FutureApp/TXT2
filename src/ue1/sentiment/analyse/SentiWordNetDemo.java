@@ -26,16 +26,24 @@ import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Map;
 
-public class SentiWordNetDemoCode {
+/**
+ * Source: http://sentiwordnet.isti.cnr.it/code/SentiWordNetDemoCode.java
+ *
+ * Additional logic was added.
+ */
+public class SentiWordNetDemo {
 
 	private Map<String, Double> dictionary;
 	private ArrayList<String> allPoSkeys;
 
 	/**
-	 * Constructs a look-up table by loading a specific lexicon to det. the polarity of a given word. 
-	 * @param pathToSWN Path to the lexicon
+	 * Constructs a look-up table by loading a specific lexicon to det. the
+	 * polarity of a given word.
+	 * 
+	 * @param pathToSWN
+	 *            Path to the lexicon
 	 */
-	public SentiWordNetDemoCode(String pathToSWN) {
+	public SentiWordNetDemo(String pathToSWN) {
 		// This is our main dictionary representation
 		dictionary = new HashMap<String, Double>();
 		allPoSkeys = new ArrayList<>();
