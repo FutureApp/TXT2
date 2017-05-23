@@ -10,8 +10,10 @@ import xgeneral.modules.Writer;
 
 public class Similarity_Main {
 
+	private static  int min = 3;
 	static String[] arg;
 	static String encoding = Encoding.getDefaultEncoding();
+	private static int max = 3;
 
 	/**
 	 * Entry-point of application.
@@ -48,7 +50,7 @@ public class Similarity_Main {
 		Writer.delAndWrite(exportMatrixFile, simiMatrix.matrixToString());
 		Writer.delAndWrite(exportListFile, highestSimiliList.toString());
 
-		System.out.println("Exporting results -- finsihed");
+		System.out.println("Exporting results -- finished");
 		System.out.println();
 		System.out.println("Location of matrix -> " + exportMatrixFile.getAbsolutePath());
 		System.out.println("Location of list -> " + exportListFile.getAbsolutePath());
@@ -58,8 +60,7 @@ public class Similarity_Main {
 	}
 
 	private static void PrintByeBye() {
-		// TODO Auto-generated method stub
-		
+		System.out.println("-- Programm finished --");
 	}
 
 	private static void check(String[] arg2) {
@@ -72,13 +73,18 @@ public class Similarity_Main {
 	 * then pass else print usage() and terminate program with exit-code 2.
 	 */
 	public static void validateAmountOfGivenInput() {
-		if (arg.length < 0) {
-			SystemMessage.eMessage("More input is needed");
+		if (arg.length < min || arg.length> max) {
+				if(arg.length < min)
+					SystemMessage.eMessage("More input is required");
+			if(arg.length > max)
+				SystemMessage.eMessage("Less input is required");
 			System.out.println();
 			for (int i = 0; i < arg.length; i++) {
 				System.out.printf("Argument %d: %s", i, arg[i]);
 				System.out.println();
 			}
+			
+			
 			usage();
 			System.exit(2);
 		}
