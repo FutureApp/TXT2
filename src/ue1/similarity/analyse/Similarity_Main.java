@@ -10,7 +10,7 @@ import xgeneral.modules.Writer;
 
 public class Similarity_Main {
 
-	private static  int min = 3;
+	private static int min = 3;
 	static String[] arg;
 	static String encoding = Encoding.getDefaultEncoding();
 	private static int max = 3;
@@ -25,9 +25,14 @@ public class Similarity_Main {
 		validateAmountOfGivenInput();
 		check(arg);
 
-		String dirInput = "./temp/res/src";
-		String pathMatrixExport = "./result/matrixExport.txt";
-		String pathListExport = "./result/listExport.txt";
+		// String dirInput = "./temp/res/src";
+		// String pathMatrixExport = "./result/matrixExport.txt";
+		// String pathListExport = "./result/listExport.txt";
+
+		String dirInput = arg[0];
+		String pathMatrixExport = arg[1];
+		String pathListExport = arg[2];
+
 		SimilarityAnalyzer programm = new SimilarityAnalyzer(dirInput, pathMatrixExport, pathListExport);
 		ArrayList<DocumentSignatureGramm> allSigis = programm.generateDocumentSignature();
 		programm.saveSignatures(allSigis);
@@ -54,7 +59,7 @@ public class Similarity_Main {
 		System.out.println();
 		System.out.println("Location of matrix -> " + exportMatrixFile.getAbsolutePath());
 		System.out.println("Location of list -> " + exportListFile.getAbsolutePath());
-		
+
 		PrintByeBye();
 
 	}
@@ -63,8 +68,28 @@ public class Similarity_Main {
 		System.out.println("-- Programm finished --");
 	}
 
-	private static void check(String[] arg2) {
-		// TODO Auto-generated method stub
+	private static void check(String[] arg) {
+		String pathDir = arg[0];
+		String pathToMatrix = arg[1];
+		String pathToList = arg[2];
+		File dir = new File(pathDir);
+		File fileToMatrix = new File(pathToMatrix);
+		File fileToList = new File(pathToList);
+		if (dir.isDirectory()) {
+
+		} else {
+			SystemMessage.eMessage("Argument 0 doesn't point to a directory. Given <" + pathDir + ">");
+			SystemMessage.eMessage("Execution stopped.");
+			System.exit(1);
+		}
+		if (fileToMatrix.exists()) {
+			SystemMessage.wMessage("Argument 1 points to an already existing file. This file will be overwritten. <"
+					+ fileToMatrix.getAbsolutePath() + ">");
+		}
+		if (fileToList.exists()) {
+			SystemMessage.wMessage("Argument 2 points to an already existing file. This file will be overwritten.<"
+					+ fileToList.getAbsolutePath() + ">");
+		}
 
 	}
 
@@ -73,18 +98,17 @@ public class Similarity_Main {
 	 * then pass else print usage() and terminate program with exit-code 2.
 	 */
 	public static void validateAmountOfGivenInput() {
-		if (arg.length < min || arg.length> max) {
-				if(arg.length < min)
-					SystemMessage.eMessage("More input is required");
-			if(arg.length > max)
+		if (arg.length < min || arg.length > max) {
+			if (arg.length < min)
+				SystemMessage.eMessage("More input is required");
+			if (arg.length > max)
 				SystemMessage.eMessage("Less input is required");
 			System.out.println();
 			for (int i = 0; i < arg.length; i++) {
 				System.out.printf("Argument %d: %s", i, arg[i]);
 				System.out.println();
 			}
-			
-			
+
 			usage();
 			System.exit(2);
 		}
@@ -95,6 +119,7 @@ public class Similarity_Main {
 	 */
 	private static void usage() {
 		System.out.println("---------- Usage ----------");
-		System.out.println("java -jar <name of jar>.jar ");
+		System.out.println(
+				"java -jar <name of jar>.jar <Path to Input-directory(collection)> <Path where to export the matrix> <Path where to export the list> ");
 	}
 }
