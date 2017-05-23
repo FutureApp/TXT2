@@ -39,13 +39,13 @@ public class Similarity_Main {
 		HashMap<String, DocumentSignatureGramm> generateHashMapOfSigis = programm.generateHashMapOfSigis(allSigis);
 		MyMatrix simiMatrix = programm.generateSimilarityMatrix(allSigis);
 
-		System.out.println(simiMatrix.matrixToString());
 		programm.checkSimiliartiy(simiMatrix, generateHashMapOfSigis);
 		ArrayList<SSDTupele> detHighestSimiliForDocs = programm.detHighestSimiliForDocs(simiMatrix);
 		SSDList highestSimiliList = new SSDList(detHighestSimiliForDocs, "doc 1", "highest match with doc2",
 				"Similarity");
+		
+		System.out.println("-- Results --");
 		System.out.println(highestSimiliList.toString());
-		System.out.println("Result");
 		System.out.println(simiMatrix.matrixToString());
 
 		System.out.println("Exporting results -- starting");
@@ -64,10 +64,18 @@ public class Similarity_Main {
 
 	}
 
+	/**
+	 * Prin bye bye
+	 * 
+	 */
 	private static void PrintByeBye() {
 		System.out.println("-- Programm finished --");
 	}
 
+	/**
+	 * Checks if input is okay
+	 * @param arg The input.
+	 */
 	private static void check(String[] arg) {
 		String pathDir = arg[0];
 		String pathToMatrix = arg[1];

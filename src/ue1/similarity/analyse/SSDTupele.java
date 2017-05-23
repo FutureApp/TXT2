@@ -45,6 +45,10 @@ public class SSDTupele {
 		build.append(k3 + ")");
 		return build.toString();
 	}
+	/**
+	 * Much more prettier for list rep..
+	 * @return The SSD Tuple if in list rep.
+	 */
 	public String toStringForList() {
 		StringBuilder build = new StringBuilder();
 		build.append(k1 + "|");
