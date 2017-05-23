@@ -49,6 +49,11 @@ public class ExameSentence {
 			addWordToSentence(word);
 		}
 	}
+	
+	/**
+	 * Returns the sentence in string representation.
+	 * @return The sentence as string.
+	 */
 
 	public String getSentenceAsString() {
 		StringBuffer buffer = new StringBuffer();

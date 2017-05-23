@@ -3,7 +3,7 @@ package ue1.kSkipN.old;
 import java.util.ArrayList;
 import java.util.HashMap;
 
-public class BitShit {
+public class BitShift {
 
 	public static ArrayList<ArrayList<Integer>> generateIndexList(int n, int k) {
 		int startNumber = generateStartNumber(n);

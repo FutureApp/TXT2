@@ -2,6 +2,11 @@ package ue1.sentiment.analyse;
 
 import xgeneral.modules.SymboleClazz.SentiLabel;
 
+/**
+ * Don't use this. Is not working well.
+ *
+ */
+@Deprecated
 public class ExperimentCounter {
 
 	double pospos, negneg = 0;

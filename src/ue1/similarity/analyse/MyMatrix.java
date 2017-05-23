@@ -12,6 +12,11 @@ public class MyMatrix {
 	HashMap<Integer, String> indexByInteger;
 	HashMap<String, Integer> indexByName;
 
+	/**
+	 * Constructor.
+	 * @param matrix The matrix 
+	 * @param index The index-specification of the matrix.
+	 */
 	public MyMatrix(ArrayList<ArrayList<Double>> matrix, HashMap<Integer, String> index) {
 		super();
 		this.matrix = matrix;
@@ -19,6 +24,13 @@ public class MyMatrix {
 		this.indexByName = invert(index);
 	}
 
+	/**
+	 * Converts key|value map to a value|key map.
+	 * 
+	 * @param index
+	 *            The specific map.
+	 * @return The inverted map.
+	 */
 	private HashMap<String, Integer> invert(HashMap<Integer, String> index) {
 		HashMap<String, Integer> invert = new HashMap<>();
 		for (Entry<Integer, String> elem : index.entrySet()) {
@@ -27,6 +39,10 @@ public class MyMatrix {
 		return invert;
 	}
 
+	/**
+	 * Returns the name of the file, corresponding to the index.
+	 * @return The name of the index(col).
+	 */
 	public String indexMapByIntegerToString() {
 		StringBuilder builder = new StringBuilder();
 		for (Entry<Integer, String> arrayList : indexByInteger.entrySet()) {
@@ -37,10 +53,18 @@ public class MyMatrix {
 
 	}
 
+	/**
+	 * Returns the size of matrix.
+	 * @return Size of matrix.
+	 */
 	public Integer size() {
 		return matrix.size();
 	}
 
+	/**
+	 * Returns the index by String.
+	 * @return The the index det by string.
+	 */
 	public String indexMapByStringToInteger() {
 		StringBuilder builder = new StringBuilder();
 		for (Entry<String, Integer> elem : indexByName.entrySet()) {
@@ -50,6 +74,10 @@ public class MyMatrix {
 
 	}
 
+	/**
+	 * Returns the matrix in string representatoin.
+	 * @return The Matrix as a string.
+	 */
 	public String matrixToString() {
 		StringBuilder cols = new StringBuilder();
 		cols.append("          ");

@@ -51,6 +51,14 @@ public class AdvanceTeiP5 {
 		}
 		return result;
 	}
+
+	/**
+	 * Extracts all lemmas in sentence boundaries.
+	 * 
+	 * @param myContent
+	 *            The document where to abstract from.
+	 * @return Sentences.
+	 */
 	public ArrayList<ArrayList<String>> extractEachLemmaBySentence(Document myContent) {
 		ArrayList<ArrayList<String>> result = new ArrayList<>();
 		NodeList nList = myContent.getElementsByTagName("s");
@@ -100,6 +108,10 @@ public class AdvanceTeiP5 {
 		return result;
 	}
 
+	/**
+	 * Retunrs only specific elements <s-tagers> and normalize the values.
+	 * @return Normalized sentences with normalized words.
+	 */
 	public ArrayList<ArrayList<String>> returnOnlySElementsAndNoramlize() {
 		ArrayList<ArrayList<String>> result = new ArrayList<>();
 		NodeList nList = content.getElementsByTagName("s");
@@ -119,14 +131,19 @@ public class AdvanceTeiP5 {
 			result.add(sentence);
 		}
 		return result;
-		
+
 	}
 
+	/**
+	 * Creates the k-skip-n-gramms.
+	 * @param n Gramm-size.
+	 * @param k Value of skip.
+	 */
+	@Deprecated
 	public void generatekSkipnGramm(Integer n, Integer k) {
 		ArrayList<ArrayList<String>> allSen = extractEachLemmaBySentence(content);
 		System.out.println(allSen);
-		
-		
+
 	}
 
 	/**
@@ -142,8 +159,7 @@ public class AdvanceTeiP5 {
 	 *            The particular sentence
 	 * @return The sentence tokenized by window-length.
 	 */
-	public  ArrayList<List<String>> generateSublists(Integer ngramms, Integer kgramms,
-			ArrayList<String> sentence) {
+	public ArrayList<List<String>> generateSublists(Integer ngramms, Integer kgramms, ArrayList<String> sentence) {
 
 		// Make every word unique. (Because Hashmap)
 		ArrayList<String> uniqueWords = new ArrayList<>();

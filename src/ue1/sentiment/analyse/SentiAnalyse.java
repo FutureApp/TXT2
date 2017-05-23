@@ -21,6 +21,14 @@ public class SentiAnalyse {
 		this.pathToInputFile = pathToInputFile;
 	}
 
+	/**
+	 * Starts the analysis
+	 * 
+	 * @param binaryRun
+	 *            Sets the optional parameter. By Default this value is true and
+	 *            will force the bin-execution mode.
+	 * @return An arraylist which contains the 4-field-tables of this experiment.
+	 */
 	public ArrayList<FourFieldTable> runAnalysis(Boolean binaryRun) {
 		ArrayList<FourFieldTable> tabels = new ArrayList<>();
 		FourFieldTable posTable = new FourFieldTable(SentiLabel.pos);
@@ -57,6 +65,13 @@ public class SentiAnalyse {
 		return tabels;
 	}
 
+	/**
+	 * Returns a label according to the value of the polarity.
+	 * 
+	 * @param sentencePolarity
+	 *            The polarity.
+	 * @return The specific label.
+	 */
 	private SentiLabel calcLabelForPolarity(double sentencePolarity) {
 		SentiLabel label = SentiLabel.unknown;
 		if (sentencePolarity > 0)

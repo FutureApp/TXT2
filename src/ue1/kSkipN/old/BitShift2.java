@@ -2,7 +2,7 @@ package ue1.kSkipN.old;
 
 import java.util.ArrayList;
 
-public class BitShit2 {
+public class BitShift2 {
 
 	public static void main(String[] args) {
 

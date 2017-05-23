@@ -12,73 +12,110 @@ public class FourFieldTable {
 		this.category = category;
 	}
 
+	/**
+	 * Add the required items to the object.
+	 * 
+	 * @param trueValue
+	 *            Label which is given by Test-data.
+	 * @param experimentValue
+	 *            Label which is given by our calc.
+	 */
 	public void add(SentiLabel trueValue, SentiLabel experimentValue) {
 		if (category.compareTo(trueValue) == 0) {
 			if (category.compareTo(experimentValue) == 0) {
 				tp++;
-//				System.out.println(category + " " + trueValue + " " + experimentValue + " tp|" + tp);
+				// System.out.println(category + " " + trueValue + " " +
+				// experimentValue + " tp|" + tp);
 			} else {
 				fn++;
-//				System.out.println(category + " " + trueValue + " " + experimentValue + " fn|" + fn);
+				// System.out.println(category + " " + trueValue + " " +
+				// experimentValue + " fn|" + fn);
 			}
 		} else {
 			if (category.compareTo(experimentValue) == 0) {
 				fp++;
-//				System.out.println(category + " " + trueValue + " " + experimentValue + " fp|" + fp);
+				// System.out.println(category + " " + trueValue + " " +
+				// experimentValue + " fp|" + fp);
 
 			} else {
 				tn++;
-//				System.out.println(category + " " + trueValue + " " + experimentValue + " tn|" + tn);
+				// System.out.println(category + " " + trueValue + " " +
+				// experimentValue + " tn|" + tn);
 			}
 		}
 	}
 
+	/**
+	 * Returns the total-value
+	 * 
+	 * @return Value of total.
+	 */
 	public double getTotal() {
 		return tp + fn + fp + tn;
 	}
 
+	/**
+	 * Returns the precision.
+	 * 
+	 * @return Precision of this 4-field-table.
+	 */
 	public double getPrecision() {
 		double precision = tp / (tp + fp);
 		return precision;
 	}
+
+	/**
+	 * Returns the recall.
+	 * 
+	 * @return Recall of this 4-field-table.
+	 */
 
 	public double getRecall() {
 		double recall = tp / (tp + fn);
 		return recall;
 	}
 
+	/**
+	 * Returns value of True Positives
+	 * 
+	 * @return Amount of True - Positives.
+	 */
 	public double getTp() {
 		return tp;
 	}
 
-	public void setTp(double tp) {
-		this.tp = tp;
-	}
-
+	/**
+	 * Returns value of False Negatives
+	 * 
+	 * @return Amount of False - Negatives.
+	 */
 	public double getFn() {
 		return fn;
 	}
 
-	public void setFn(double fn) {
-		this.fn = fn;
-	}
-
+	/**
+	 * Returns value of False Positives
+	 * 
+	 * @return Amount of False - Positives.
+	 */
 	public double getFp() {
 		return fp;
 	}
 
-	public void setFp(double fp) {
-		this.fp = fp;
-	}
-
+	/**
+	 * Returns value of True Negatives
+	 * 
+	 * @return Amount of True - Negatives.
+	 */
 	public double getTn() {
 		return tn;
 	}
 
-	public void setTn(double tn) {
-		this.tn = tn;
-	}
-
+	/**
+	 * Returns the category of this 4-field-table
+	 * 
+	 * @return The category.
+	 */
 	public SentiLabel getCategory() {
 		return category;
 	}

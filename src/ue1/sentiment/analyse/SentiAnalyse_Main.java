@@ -30,8 +30,8 @@ public class SentiAnalyse_Main {
 	public static void main(String[] args) {
 		String pathToLexiconFile;
 		String pathToInputFile;
-//		pathToLexiconFile = "./task/01Task01/lexikon.txt";
-//		pathToInputFile = "./task/01Task01/Sentiment_All.txt";
+		// pathToLexiconFile = "./task/01Task01/lexikon.txt";
+		// pathToInputFile = "./task/01Task01/Sentiment_All.txt";
 		arg = args;
 		validateAmountOfGivenInput();
 		ArrayList<String> checkedArguments = check(arg);
@@ -70,6 +70,11 @@ public class SentiAnalyse_Main {
 
 	}
 
+	/**
+	 * Exports the 4-field-table.
+	 * @param fourFieldTable The 4-field-table.
+	 * @param exportDirectory The dir, where to export the 4-field-table.
+	 */
 	private static void exportResults(FourFieldTable fourFieldTable, String exportDirectory) {
 		String catagorySpecific = detFilePrefix(fourFieldTable.getCategory());
 		File exportFile = new File(exportDirectory + "/results/" + "category_" + catagorySpecific + ".txt");
@@ -78,6 +83,11 @@ public class SentiAnalyse_Main {
 				+ exportFile.getAbsolutePath() + ">");
 	}
 
+	/**
+	 * Returns the prefix of the output-file. This happens in relation to the category 
+	 * @param category The category
+	 * @return Prefix for the file.
+	 */
 	private static String detFilePrefix(SentiLabel category) {
 		String result = "";
 		switch (category) {
@@ -95,6 +105,11 @@ public class SentiAnalyse_Main {
 
 	}
 
+	/**
+	 * Sets and checks the optional option
+	 * @param string Value of the optional option.
+	 * @return True -- if 'bin'
+	 */
 	private static Boolean returnTrueIfBinary(String string) {
 		Boolean binaryExecution = (string.compareTo("bin") == 0) ? true : false;
 		return binaryExecution;
@@ -105,6 +120,13 @@ public class SentiAnalyse_Main {
 		return sentiwordnet.getPolarity(sentence);
 	}
 
+	/**
+	 * Abstracts the data which is needed to start the analysis.
+	 * 
+	 * @param pathToInputFile
+	 *            File which contains the content for the analysis.
+	 * @return
+	 */
 	public static ArrayList<ExameSentence> createExameSentenceList(String pathToInputFile) {
 		ArrayList<ExameSentence> result = new ArrayList<>();
 		BufferedReader csv = null;
@@ -161,6 +183,13 @@ public class SentiAnalyse_Main {
 		return result;
 	}
 
+	/**
+	 * Checks if the input is okay.
+	 * 
+	 * @param arg
+	 *            The input.
+	 * @return The complete input as ArrayList, if everything is okay.
+	 */
 	private static ArrayList<String> check(String[] arg) {
 		ArrayList<String> arguments = new ArrayList<>();
 		String pathToLexicon = arg[0];

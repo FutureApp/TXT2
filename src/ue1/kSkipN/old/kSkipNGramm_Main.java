@@ -37,7 +37,7 @@ public class kSkipNGramm_Main {
 		File fileOfContent = new File(pathToContent);
 		TeiP5 teiData = TeiP5Loader.loadTei5Document(fileOfContent);
 		ArrayList<ArrayList<String>> extractS = teiData.extractS();
-		HashMap<String, ArrayList<ArrayList<Integer>>> indexHashMap = BitShit.generateNeededIndexList(ngramms, kgramms);
+		HashMap<String, ArrayList<ArrayList<Integer>>> indexHashMap = BitShift.generateNeededIndexList(ngramms, kgramms);
 		ArrayList<HashSet<ArrayList<String>>> grammsOfAllSentences = new ArrayList<>();
 		indexHashMap.forEach((a, b) -> System.out.println(a));
 		// for each sentence

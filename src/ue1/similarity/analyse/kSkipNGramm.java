@@ -85,13 +85,13 @@ public class kSkipNGramm {
 			for (ArrayList<String> e : sentenceGramms) {
 				StringBuilder builder = new StringBuilder();
 				for (String grammComponent : e) {
-//					System.out.println("Gramm com:" + grammComponent);
+					// System.out.println("Gramm com:" + grammComponent);
 					builder.append(
 							grammComponent.substring(0, grammComponent.indexOf(SymboleClazz.SPECIAL_DELIM)) + ",");
 				}
 				builder.setCharAt(builder.length() - 1, ')');
 				builder.insert(0, '(');
-//				System.out.println("Builder-> " + builder);
+				// System.out.println("Builder-> " + builder);
 				sentenceGrammList.add(builder.toString());
 			}
 
@@ -99,10 +99,10 @@ public class kSkipNGramm {
 			// Each sentence to the document-gramms.
 			grammsOfAllSentences.add(sentenceGrammList);
 			// Sorts the list
-//			System.out.println("Size: " + sentenceGrammList.size());
-//			System.out.println("----");
-//			System.out.println(sentenceGramms);
-//			System.out.println(grammsOfAllSentences);
+			// System.out.println("Size: " + sentenceGrammList.size());
+			// System.out.println("----");
+			// System.out.println(sentenceGramms);
+			// System.out.println(grammsOfAllSentences);
 
 		}
 
@@ -213,6 +213,8 @@ public class kSkipNGramm {
 			Writer.addContentToFile(fileToSave, stringBuilder.toString());
 			formatter.close();
 		}
+
+		// Exporting
 		Formatter formatter = new Formatter();
 		String endLine = formatter.format("Total number in document: %d %d-skip %d-Gramms found.",
 				totalNumberOfGrammsInDocument, kgramms, ngramms).toString();
@@ -285,10 +287,19 @@ public class kSkipNGramm {
 		return resultList;
 	}
 
+	/**
+	 * Abstracts the document-structure based
+	 * 
+	 * @param executeSkipNGramm
+	 *            The n-Gramms
+	 * @param fileName
+	 *            Name of the file,
+	 * @return The doc-signature.
+	 */
 	public DocumentSignatureGramm generateGrammMap(ArrayList<List<String>> executeSkipNGramm, String fileName) {
 		HashMap<String, Integer> map = new HashMap<>();
 		DocumentSignatureGramm docSigi = new DocumentSignatureGramm(map, fileName);
-		
+
 		for (List<String> list : executeSkipNGramm) {
 			for (String gramm : list) {
 				docSigi.addGramm(gramm);
