@@ -100,10 +100,24 @@ public class MyMatrix {
 		return cols.toString();
 	}
 
+	
+	/**
+	 * Retruns the Value at field x y
+	 * @param x Col
+	 * @param y Row
+	 * @return Value of field x,y
+	 */
 	public double getElementBy(Integer x, Integer y) {
 		return matrix.get(x).get(y);
 	}
 
+	/**
+	 * Set the value of field x,y
+	 * @param x Col
+	 * @param y Row
+	 * @param newValue
+	 * @return The value which was set.
+	 */
 	public double setElementBy(Integer x, Integer y, Double newValue) {
 		return matrix.get(x).set(y, newValue);
 	}

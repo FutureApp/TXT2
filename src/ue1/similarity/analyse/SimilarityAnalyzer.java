@@ -159,6 +159,13 @@ public class SimilarityAnalyzer {
 		System.out.println("Checking similarity -- finished");
 	}
 
+	
+	/**
+	 * Calc the similiarity between two documents based on their doc-signature.
+	 * The Calc is done by cosinus-comparison.
+	 * @param doc1 Doc-signature of doc 1
+	 * @return doc-signature of doc 2.
+	 */
 	private double calcSimilarity(DocumentSignatureGramm doc1, DocumentSignatureGramm doc2) {
 		double cosineSimilarity = 0d;
 		if (doc1.documentName.compareTo(doc2.documentName) == 0) {
@@ -172,6 +179,12 @@ public class SimilarityAnalyzer {
 		return cosineSimilarity;
 	}
 
+	/**
+	 * Converts the doc-signature into a vector representation in correlation to a another corresponding doc.
+	 * @param doc doc-signature of a the specific document. 
+	 * @param vectorTreeSet Big-Set containing elements form doc-signature A and B
+	 * @return  An Vector for comparison as List.
+	 */
 	private ArrayList<Double> buildVector(DocumentSignatureGramm doc, TreeSet<String> vectorTreeSet) {
 		ArrayList<Double> docAsVector = new ArrayList<>();
 
@@ -186,6 +199,12 @@ public class SimilarityAnalyzer {
 
 	}
 
+	/**
+	 * Creates the Big-Set by creating a Set over all possible key-words. -> gramms. ( Max dimension.
+	 * @param doc1 Doc 1
+	 * @param doc2 Doc 2
+	 * @return Set containing key from doc1 and doc2
+	 */
 	private TreeSet<String> createVectorHashSet(DocumentSignatureGramm doc1, DocumentSignatureGramm doc2) {
 		HashSet<String> helpSet = new HashSet<>();
 		for (Entry<String, Integer> elem1 : doc1.grammMap.entrySet()) {
@@ -200,6 +219,12 @@ public class SimilarityAnalyzer {
 		return vectorSet;
 	}
 
+	/**
+	 * Abstracts the best pair of documents by det the highest similarity.
+	 * @param matrix A specific matrix to abstract from-
+	 * @return Datatyp- to handle the 3 components.
+	 * {@link #SSDTuple}
+	 */
 	public ArrayList<SSDTupele> detHighestSimiliForDocs(MyMatrix matrix) {
 		ArrayList<SSDTupele> result = new ArrayList<>();
 		for (int i = 0; i < matrix.size(); i++) {
