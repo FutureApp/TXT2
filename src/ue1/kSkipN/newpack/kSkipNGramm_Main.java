@@ -52,7 +52,7 @@ public class kSkipNGramm_Main {
 	private static void byeByeMessage(String pathForSaving) {
 		File file = new File(pathForSaving);
 		System.out.println();
-		System.out.println("Execution hast finished!!!" + System.lineSeparator() + "Take a look at the results: <"
+		System.out.println("Execution finished!!!" + System.lineSeparator() + "Take a look at the results: <"
 				+ file.getAbsolutePath() + ">");
 	}
 

@@ -14,7 +14,7 @@ import xgeneral.modules.SymboleClazz.SentiLabel;
 import xgeneral.modules.SystemMessage;
 import xgeneral.modules.Writer;
 
-public class TaskRunner_Template {
+public class SentiAnalyse_Main {
 
 	static String[] arg;
 	static String encoding = Encoding.getDefaultEncoding();
@@ -28,8 +28,10 @@ public class TaskRunner_Template {
 	 * @param args
 	 */
 	public static void main(String[] args) {
-		String pathToLexiconFile = "./task/01Task01/lexikon.txt";
-		String pathToInputFile = "./task/01Task01/Sentiment_All.txt";
+		String pathToLexiconFile;
+		String pathToInputFile;
+//		pathToLexiconFile = "./task/01Task01/lexikon.txt";
+//		pathToInputFile = "./task/01Task01/Sentiment_All.txt";
 		arg = args;
 		validateAmountOfGivenInput();
 		ArrayList<String> checkedArguments = check(arg);
@@ -38,11 +40,11 @@ public class TaskRunner_Template {
 		pathToLexiconFile = checkedArguments.get(0);
 		pathToInputFile = checkedArguments.get(1);
 		Boolean binaryExecution = returnTrueIfBinary(checkedArguments.get(2));
-
-		System.out.println(pathToLexiconFile);
-		System.out.println(pathToInputFile);
-		System.out.println(binaryExecution);
-
+		/*
+		 * System.out.println(pathToLexiconFile);
+		 * System.out.println(pathToInputFile);
+		 * System.out.println(binaryExecution);
+		 */
 		// Processing
 		System.out.println("-- Processing --");
 		System.out.println("-- Loading senti-list --");
@@ -62,16 +64,17 @@ public class TaskRunner_Template {
 		for (FourFieldTable fourFieldTable : exCounter) {
 			exportResults(fourFieldTable, exportDir);
 		}
-
-		System.out.println("Programm finished.");
+		System.out.println();
+		System.out.println();
+		System.out.println("-- Programm finished --");
 
 	}
 
 	private static void exportResults(FourFieldTable fourFieldTable, String exportDirectory) {
 		String catagorySpecific = detFilePrefix(fourFieldTable.getCategory());
-		File exportFile = new File(exportDirectory + "/" + "category_" + catagorySpecific + ".txt");
+		File exportFile = new File(exportDirectory + "/results/" + "category_" + catagorySpecific + ".txt");
 		Writer.delAndWrite(exportFile, fourFieldTable.toString());
-		System.out.println("Export for category [" + catagorySpecific + "] finished. Location <"
+		System.out.println("Export of category [" + catagorySpecific + "] finished. Location <"
 				+ exportFile.getAbsolutePath() + ">");
 	}
 
@@ -96,6 +99,7 @@ public class TaskRunner_Template {
 		Boolean binaryExecution = (string.compareTo("bin") == 0) ? true : false;
 		return binaryExecution;
 	}
+
 	@Deprecated
 	public static double getPolarity(ExameSentence sentence, SentiWordNetDemo sentiwordnet) {
 		return sentiwordnet.getPolarity(sentence);
@@ -213,6 +217,6 @@ public class TaskRunner_Template {
 	 */
 	private static void usage() {
 		System.out.println("---------- Usage ----------");
-		System.out.println("java -jar <name of jar>.jar ");
+		System.out.println("java -jar <name of jar>.jar <path to lexicon> <path to test-input> [optional: <bin|mul>]");
 	}
 }
