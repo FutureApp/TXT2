@@ -21,7 +21,7 @@ public class Similarity_Main {
 		validateAmountOfGivenInput();
 		check(arg);
 
-		String dirInput = "./temp/res";
+		String dirInput = "./temp/res/src";
 		String pathMatrixExport = "./temp/matrixExport.txt";
 		String pathListExport = "./temp/listExport.txt";
 		SimilarityAnalyzer programm = new SimilarityAnalyzer(dirInput, pathMatrixExport, pathListExport);
@@ -29,7 +29,11 @@ public class Similarity_Main {
 		programm.saveSignatures(allSigis);
 		HashMap<String, DocumentSignatureGramm> generateHashMapOfSigis = programm.generateHashMapOfSigis(allSigis);
 		MyMatrix simiMatrix = programm.generateSimilarityMatrix(allSigis);
+		
+		System.out.println(simiMatrix.matrixToString());
 		programm.checkSimiliartiy(simiMatrix, generateHashMapOfSigis);
+		System.out.println("Resulst");
+		System.out.println(simiMatrix.matrixToString());
 	}
 
 	private static void check(String[] arg2) {
