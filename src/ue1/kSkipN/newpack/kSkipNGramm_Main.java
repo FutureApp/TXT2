@@ -263,7 +263,7 @@ public class kSkipNGramm_Main {
 
 	/**
 	 * Generates all need sublists for a particular sentence. Sublists generated
-	 * is det. by a specific window-size. (Tokenizing the sentce
+	 * is det. by a specific window-size. (Tokenizing the sentence)
 	 * 
 	 * @param ngramms
 	 *            Size of n-gramm window.

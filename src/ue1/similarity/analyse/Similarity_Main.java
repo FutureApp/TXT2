@@ -1,5 +1,8 @@
 package ue1.similarity.analyse;
 
+import java.util.ArrayList;
+import java.util.HashMap;
+
 import xgeneral.modules.Encoding;
 import xgeneral.modules.SystemMessage;
 
@@ -16,6 +19,22 @@ public class Similarity_Main {
 	public static void main(String[] args) {
 		arg = args;
 		validateAmountOfGivenInput();
+		check(arg);
+
+		String dirInput = "./temp/res";
+		String pathMatrixExport = "./temp/matrixExport.txt";
+		String pathListExport = "./temp/listExport.txt";
+		SimilarityAnalyzer programm = new SimilarityAnalyzer(dirInput, pathMatrixExport, pathListExport);
+		ArrayList<DocumentSignatureGramm> allSigis = programm.generateDocumentSignature();
+		programm.saveSignatures(allSigis);
+		HashMap<String, DocumentSignatureGramm> generateHashMapOfSigis = programm.generateHashMapOfSigis(allSigis);
+		MyMatrix simiMatrix = programm.generateSimilarityMatrix(allSigis);
+		programm.checkSimiliartiy(simiMatrix, generateHashMapOfSigis);
+	}
+
+	private static void check(String[] arg2) {
+		// TODO Auto-generated method stub
+
 	}
 
 	/**
@@ -23,7 +42,7 @@ public class Similarity_Main {
 	 * then pass else print usage() and terminate program with exit-code 2.
 	 */
 	public static void validateAmountOfGivenInput() {
-		if (arg.length < 3) {
+		if (arg.length < 0) {
 			SystemMessage.eMessage("More input is needed");
 			System.out.println();
 			for (int i = 0; i < arg.length; i++) {
