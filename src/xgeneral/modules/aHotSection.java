@@ -2,30 +2,34 @@ package xgeneral.modules;
 
 import java.io.File;
 import java.io.IOException;
-import java.util.Arrays;
-import java.util.HashMap;
-import java.util.List;
+import java.util.ArrayList;
+import java.util.concurrent.atomic.AtomicMarkableReference;
 
+import javax.xml.xpath.XPathConstants;
+
+import java.io.File;
+import java.io.IOException;
+
+import javax.xml.parsers.DocumentBuilderFactory;
+import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.ParserConfigurationException;
+import javax.xml.xpath.XPath;
+import javax.xml.xpath.XPathConstants;
+import javax.xml.xpath.XPathExpressionException;
+import javax.xml.xpath.XPathFactory;
 
-import org.apache.commons.io.FileUtils;
+import org.w3c.dom.Document;
+import org.w3c.dom.NodeList;
+import org.w3c.dom.Node;
+import org.w3c.dom.Element;
+import org.w3c.dom.NamedNodeMap;
 import org.xml.sax.SAXException;
 
-import ue1.sentiment.analyse.ExperimentCounter;
+import ue1.kSkipN.newpack.TeiP5;
+import ue1.kSkipN.newpack.TeiP5Loader;
 
 public class aHotSection {
-	public static void main(String[] args) throws ParserConfigurationException, SAXException, IOException {
-		
-		ExperimentCounter counter = new ExperimentCounter(); 
-		
-		
-		counter.addOneRealPos();
-		counter.addOneRealPos();
-		counter. addOneRealNeg();
-		System.out.println(counter.getTruePos());
-		System.out.println(counter.getRealNeg());
-		System.out.println(counter.getTotal());
-		
+	public static void main(String[] args) {
 
 	}
 

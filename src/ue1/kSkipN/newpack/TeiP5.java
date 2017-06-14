@@ -51,6 +51,29 @@ public class TeiP5 {
 		return result;
 	}
 
+	public ArrayList<ArrayList<String>> extractEachLemmaByTag(String tag) {
+		ArrayList<ArrayList<String>> result = new ArrayList<>();
+		NodeList nList = content.getElementsByTagName("p");
+		for (int temp = 0; temp < nList.getLength(); temp++) {
+			NodeList childNodes = nList.item(temp).getChildNodes();
+			ArrayList<String> paragraphs = new ArrayList<>();
+			for (int i = 0; i < childNodes.getLength(); i++) {
+				extractEachLemmaBySentence();
+				Node node = childNodes.item(i);
+
+				if (node.getNodeName().equals("w") && (childNodes.item(i).getNodeType() == Node.ELEMENT_NODE)) {
+					Element elem = (Element) childNodes.item(i);
+					if (elem.hasAttribute("lemma"))
+						paragraphs.add(elem.getAttribute("lemma"));
+					else
+						SystemMessage.eMessage("Lemma not found");
+				}
+			}
+			result.add(paragraphs);
+		}
+		return result;
+	}
+
 	/**
 	 * Generates n-gramms.
 	 * 
@@ -77,5 +100,25 @@ public class TeiP5 {
 		}
 		System.out.println(result);
 		return result;
+	}
+
+	public Document getDocument() {
+		return content;
+	}
+
+	public void abstractsNodes(NodeList node, String tag) {
+		for (int i = 0; i < node.getLength(); i++) {
+			Node nNode = node.item(i);
+			System.out.println("nNode " + nNode.getNodeName());
+		}
+	}
+
+	public NodeList getDocNodes() {
+		NodeList childNodes = content.getChildNodes();
+		return childNodes;
+	}
+
+	public void abstractsPNodes() {
+		
 	}
 }
