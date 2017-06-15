@@ -25,6 +25,7 @@ public class TeiP5Loader {
 	 */
 	public static TeiP5 loadTei5Document(File file) {
 		Document doc = null;
+		System.out.println(file.getAbsolutePath());
 		if (!checkIfFileExits(file)) {
 			printError("File not found <" + file.getAbsolutePath() + ">");
 		} else {
@@ -40,6 +41,7 @@ public class TeiP5Loader {
 			printError("Couldn't read and creat a Tei5-Object. Execution will stop.");
 			System.exit(1);
 		}
+		System.out.println("Document will be returned");
 		return new TeiP5(doc);
 	}
 
@@ -57,6 +59,7 @@ public class TeiP5Loader {
 			DocumentBuilder dBuilder = dbFactory.newDocumentBuilder();
 			doc = dBuilder.parse(file);
 			doc.getDocumentElement().normalize();
+			System.out.println("!");
 		} catch (SAXException | IOException | ParserConfigurationException e) {
 			e.printStackTrace();
 		}

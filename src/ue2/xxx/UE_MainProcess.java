@@ -5,10 +5,10 @@ import java.util.ArrayList;
 
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
+import org.w3c.dom.NamedNodeMap;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 
-import scala.collection.parallel.ParIterableLike.Foreach;
 import ue1.kSkipN.newpack.TeiP5;
 import ue1.kSkipN.newpack.TeiP5Loader;
 import xgeneral.modules.SystemMessage;
@@ -17,10 +17,11 @@ public class UE_MainProcess {
 	int wCounter = 0;
 
 	public TeiP5 readFile(String pathTotp5FileLocation) {
+		System.out.println("Start loading");
 		File tp5File = new File(pathTotp5FileLocation);
 		TeiP5 loadTei5Document = TeiP5Loader.loadTei5Document(tp5File);
+		System.out.println("Loading successful");
 		return loadTei5Document;
-
 	}
 
 	public NodeList abstractsParagraphs(TeiP5 file) {
@@ -58,27 +59,34 @@ public class UE_MainProcess {
 
 	}
 
-	private ArrayList<ArrayList<String>> abstarctsCombinationOfAWF(NodeList nodeList) {
-		Integer breakCondition = 0;
-		for (int temp = 0; temp < nodeList.getLength(); temp++) {
-			Node childNode = nodeList.item(temp);
-			NodeList childNodes = childNode.getChildNodes();
-			for (int i = 0; i < childNodes.getLength(); i++) {
-				Node node = childNodes.item(i);
-				if (node.getNodeName().equals("w"))
-					System.out.println("w");
-			}
+	private ArrayList<ArrayList<String>> abstarctsCombinationOfAWF(ArrayList<ArrayList<Node>> wordsInPara) {
+		int bcounter = 0;
+		for (int i = 0; i < wordsInPara.size(); i++) {
+			System.out.println("in");
 
-			if (breakCondition == 1)
+			ArrayList<Node> para = wordsInPara.get(i);
+			System.out.println(para.size());
+			for (int j = 0; j < para.size(); j++) {
+				System.out.println("in2");
+				Node word = para.get(j);
+				NamedNodeMap attOfWord = word.getAttributes();
+				String lemmaOfWord = attOfWord.getNamedItem("lemma").getNodeValue();
+				String typeOfWord = attOfWord.getNamedItem("type").getNodeValue();
+
+				String keyWord = lemmaOfWord + "_" + typeOfWord;
+				System.out.println(i + " " + j + ":" + keyWord);
+			}
+			if (bcounter == 2)
 				break;
 			else
-				breakCondition++;
+				bcounter++;
 
 		}
 		return null;
 	}
 
-	public void abstractsNeededInfos(TeiP5 teiP5, String highestTagOfClustering, String smallestTagOfClustering) {
+	public ArrayList<ArrayList<Node>> abstractsNeededInfos(TeiP5 teiP5, String highestTagOfClustering,
+			String smallestTagOfClustering) {
 		ArrayList<ArrayList<Node>> docResult = new ArrayList<>();
 		NodeList hCluster = teiP5.getDocument().getElementsByTagName("p");
 
@@ -91,6 +99,7 @@ public class UE_MainProcess {
 		System.out.println("abstractsW " + docResult.size());
 		System.out.println("wCounter " + wCounter);
 		System.out.println("END");
+		return docResult;
 	}
 
 	/**
@@ -118,5 +127,18 @@ public class UE_MainProcess {
 			}
 		}
 		return result;
+	}
+
+	public void generateEntry(ArrayList<ArrayList<Node>> wordsInPara, int condition) {
+		ArrayList<ArrayList<String>> result = new ArrayList<>();
+		switch (condition) {
+		case 0:
+			result = abstarctsCombinationOfAWF(wordsInPara);
+			break;
+
+		default:
+			break;
+		}
+
 	}
 }

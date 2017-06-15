@@ -1,7 +1,8 @@
 package ue2.xxx;
 
+import java.util.ArrayList;
+
 import org.w3c.dom.Node;
-import org.w3c.dom.NodeList;
 
 import ue1.kSkipN.newpack.TeiP5;
 import xgeneral.modules.Encoding;
@@ -20,11 +21,14 @@ public class TaskRunner_Template {
 	public static void main(String[] args) {
 		arg = args;
 		validateAmountOfGivenInput();
-
+String fileLoc = "C:/Users/mcz/Desktop/temp/text";
 		UE_MainProcess main = new UE_MainProcess();
 		TeiP5 readFile = main.readFile(
-				"C:/Users/mcz/Desktop/temp/un/Franz_Kafka_In_der_Strafkolonie/Franz_Kafka_In_der_Strafkolonie.tei");
-		main.abstractsNeededInfos(readFile, "p", "w");
+				fileLoc);
+		
+		ArrayList<ArrayList<Node>> wordsInPara = main.abstractsNeededInfos(readFile, "p", "w");
+		int condition= 0;
+		main.generateEntry(wordsInPara,condition);
 
 
 	}
