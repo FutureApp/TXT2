@@ -22,7 +22,7 @@ public class TaskRunner_Template {
 	public static void main(String[] args) {
 		arg = args;
 		validateAmountOfGivenInput();
-		String fileLoc = "C:/Users/mcz/Desktop/temp/text";
+		String fileLoc = "C:/Users/admin/Desktop/temp/Franz_Kafka_In_der_Strafkolonie/alo.tei";
 		UE_MainProcess main = new UE_MainProcess();
 		TeiP5 readFile = main.readFile(fileLoc);
 		int condition = 0;
@@ -34,17 +34,16 @@ public class TaskRunner_Template {
 		ArrayList<String> trashParagraphs = new ArrayList<>();
 		for (int i = 0; i < entrysOfParagraphs.size(); i++) {
 			ArrayList<String> paragraph = entrysOfParagraphs.get(i);
-			if(paragraph.size()<=0){
-				String trashLine = i+" "+paragraph.toString();
+			if (paragraph.size() <= 0) {
+				String trashLine = i + " " + paragraph.toString();
 				trashParagraphs.add(trashLine);
-			}
-			else{
+			} else {
 				arffDoc.attachDataToList(paragraph);
 			}
 		}
 		// System.out.println(arffDoc.exportAttributesToString());
-//		 System.out.println(arffDoc.exportDatalistToString());
-		 arffDoc.exportMeToFile("./log/arffDoc.frame");
+		// System.out.println(arffDoc.exportDatalistToString());
+		arffDoc.exportMeToFile("./arffDoc");
 
 		System.out.println(main.uniqueWords);
 		System.out.println("Paragraphs " + wordsInPara.size());

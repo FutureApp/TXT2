@@ -74,8 +74,13 @@ public class ARFF_Exporter {
 	public String exportAttributesToString() {
 		StringBuilder builder = new StringBuilder();
 		headersByIndex.forEach((posInList, lemmaPlusPart) -> {
+			if (lemmaPlusPart.contains("'")) {
+				System.out.println("Warning <'>");
+			}
 			builder.append("@attribute ");
+			builder.append("'");
 			builder.append(lemmaPlusPart);
+			builder.append("'");
 			builder.append(" { t}");
 			builder.append(System.lineSeparator());
 		});
@@ -87,15 +92,15 @@ public class ARFF_Exporter {
 		StringBuilder result = new StringBuilder();
 		StringBuilder parRes = new StringBuilder();
 		System.out.println("Data-List " + dataList.size());
+		result.append("@data" + System.lineSeparator());
 		for (int i = 0; i < dataList.size(); i++) {
 			parRes = new StringBuilder();
 			ArrayList<Boolean> dataListEntry = dataList.get(i);
 			for (Boolean dataBool : dataListEntry) {
-
 				if (dataBool)
-					parRes.append(", t");
+					parRes.append(",t");
 				else
-					parRes.append(", ?");
+					parRes.append(",?");
 			}
 
 			result.append(parRes.subSequence(1, parRes.length()) + System.lineSeparator());
@@ -161,7 +166,7 @@ public class ARFF_Exporter {
 	}
 
 	public void exportMeToFile(String pathOfFile) {
-		MyoWriter.writeToLog(pathOfFile,
-				exportAttributesToString() + System.lineSeparator() + exportDatalistToString());
+		MyoWriter.writeToLog(pathOfFile, "@relation myTest");
+		MyoWriter.addToLog(pathOfFile, exportAttributesToString()  + exportDatalistToString());
 	}
 }
