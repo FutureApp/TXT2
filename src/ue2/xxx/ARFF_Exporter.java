@@ -167,6 +167,6 @@ public class ARFF_Exporter {
 
 	public void exportMeToFile(String pathOfFile) {
 		MyoWriter.writeToLog(pathOfFile, "@relation myTest");
-		MyoWriter.addToLog(pathOfFile, exportAttributesToString()  + exportDatalistToString());
+		MyoWriter.addToLog(pathOfFile, exportAttributesToString() + exportDatalistToString());
 	}
 }

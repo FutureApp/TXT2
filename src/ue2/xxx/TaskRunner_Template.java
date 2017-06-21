@@ -25,7 +25,7 @@ public class TaskRunner_Template {
 		String fileLoc = "C:/Users/admin/Desktop/temp/Franz_Kafka_In_der_Strafkolonie/alo.tei";
 		UE_MainProcess main = new UE_MainProcess();
 		TeiP5 readFile = main.readFile(fileLoc);
-		int condition = 0;
+		int condition = 1;
 
 		ArrayList<ArrayList<Node>> wordsInPara = main.abstractsNeededInfos(readFile, "p", "w");
 		ArrayList<ArrayList<String>> entrysOfParagraphs = main.generateEntry(wordsInPara, condition);

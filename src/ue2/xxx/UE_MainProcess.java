@@ -17,7 +17,7 @@ import xgeneral.modules.SystemMessage;
 
 public class UE_MainProcess {
 	int wCounter = 0;
-	int uniqueWords =0;
+	int uniqueWords = 0;
 
 	public TeiP5 readFile(String pathTotp5FileLocation) {
 		System.out.println("Start loading");
@@ -32,42 +32,58 @@ public class UE_MainProcess {
 		return paragraphs;
 	}
 
-	/**
-	 * * Abstracts the required Information, which are needed for further
-	 * processing. The return-value depends on 3 standard,
-	 * 
-	 * Cases ---->
-	 * 
-	 * 0: Returns the connections-result for < ALL WORDSFORMS >
-	 * 
-	 * 1: Returns the connections-result for < ALL N.E.V.A. >
-	 * 
-	 * 2: Returns the connections-result for < ALL N.E. >
-	 * 
-	 * @param nodeList
-	 *            List of nodes.
-	 * @param i
-	 *            Case-number
-	 */
-	public void abstractsInformationsForEachParagraphs(Document doc, int i) {
+	private ArrayList<ArrayList<String>> abstarctsCombinationOfNEVA(ArrayList<ArrayList<Node>> wordsInPara) {
+		int bcounter = 0;
 		ArrayList<ArrayList<String>> result = new ArrayList<>();
-		switch (i) {
-		case 0:
-			result = abstarctsCombinationOfAWF(null);
-			break;
-		case 1:
-			result = abstarctsCombinationOfNEVA(null);
-			break;
+		for (int i = 0; i < wordsInPara.size(); i++) {
+			System.out.println("in");
 
-		default:
-			break;
+			ArrayList<Node> para = wordsInPara.get(i);
+			System.out.println(para.size());
+			ArrayList<String> partialResult = new ArrayList<>();
+			for (int j = 0; j < para.size(); j++) {
+				System.out.println("in2");
+				Node word = para.get(j);
+				NamedNodeMap attOfWord = word.getAttributes();
+				String lemmaOfWord = attOfWord.getNamedItem("lemma").getNodeValue();
+				String typeOfWord = attOfWord.getNamedItem("type").getNodeValue();
+
+				String keyWord = lemmaOfWord.toLowerCase() + SymboleClazz.SPECIAL_UNDERSYM + typeOfWord.toLowerCase();
+
+				if (neededLemmaBasedNEVA(typeOfWord)) {
+					partialResult.add(keyWord);
+				}
+
+				System.out.println(i + " " + j + ":" + keyWord);
+			}
+			// DEV STOP
+			if (bcounter == -2)
+				break;
+			else
+				bcounter++;
+
+			result.add(partialResult);
 		}
-
+		return result;
 	}
 
-	private ArrayList<ArrayList<String>> abstarctsCombinationOfNEVA(Object object) {
-		// TODO Auto-generated method stub
-		return null;
+	private Boolean neededLemmaBasedNEVA(String typeOfWord) {
+		Boolean okay = false;
+		String partLow = typeOfWord.toLowerCase();
+
+		if (partLow.startsWith("v")) {
+			okay = true;
+		} else if (partLow.startsWith("nn")) {
+			okay = true;
+		} else if (partLow.startsWith("ne")) {
+			okay = true;
+		} else if (partLow.startsWith("adj")) {
+			okay = true;
+			// not needed
+		} else {
+			okay = false;
+		}
+		return okay;
 	}
 
 	private ArrayList<ArrayList<String>> abstarctsCombinationOfAWF(ArrayList<ArrayList<Node>> wordsInPara) {
@@ -90,12 +106,12 @@ public class UE_MainProcess {
 				partialResult.add(keyWord);
 				System.out.println(i + " " + j + ":" + keyWord);
 			}
-			//DEV STOP
+			// DEV STOP
 			if (bcounter == -2)
 				break;
 			else
 				bcounter++;
-			
+
 			result.add(partialResult);
 		}
 		return result;
@@ -151,12 +167,65 @@ public class UE_MainProcess {
 		case 0:
 			result = abstarctsCombinationOfAWF(wordsInPara);
 			break;
-
+		case 1:
+			result = abstarctsCombinationOfNEVA(wordsInPara);
+			break;
+		case 2:
+			result = abstarctsCombinationOfNNNE(wordsInPara);
+			break;
 		default:
 			break;
 		}
 		System.out.println(result);
 		return result;
+	}
+
+	private ArrayList<ArrayList<String>> abstarctsCombinationOfNNNE(ArrayList<ArrayList<Node>> wordsInPara) {
+		int bcounter = 0;
+		ArrayList<ArrayList<String>> result = new ArrayList<>();
+		for (int i = 0; i < wordsInPara.size(); i++) {
+			System.out.println("in");
+
+			ArrayList<Node> para = wordsInPara.get(i);
+			System.out.println(para.size());
+			ArrayList<String> partialResult = new ArrayList<>();
+			for (int j = 0; j < para.size(); j++) {
+				System.out.println("in2");
+				Node word = para.get(j);
+				NamedNodeMap attOfWord = word.getAttributes();
+				String lemmaOfWord = attOfWord.getNamedItem("lemma").getNodeValue();
+				String typeOfWord = attOfWord.getNamedItem("type").getNodeValue();
+
+				String keyWord = lemmaOfWord.toLowerCase() + SymboleClazz.SPECIAL_UNDERSYM + typeOfWord.toLowerCase();
+
+				if (neededLemmaBasedNNNE(typeOfWord)) {
+					partialResult.add(keyWord);
+				}
+
+				System.out.println(i + " " + j + ":" + keyWord);
+			}
+			// DEV STOP
+			if (bcounter == -2)
+				break;
+			else
+				bcounter++;
+
+			result.add(partialResult);
+		}
+		return result;
+	}
+
+	private boolean neededLemmaBasedNNNE(String typeOfWord) {
+		Boolean okay = false;
+		String partLow = typeOfWord.toLowerCase();
+		 if (partLow.startsWith("nn")) {
+			okay = true;
+		} else if (partLow.startsWith("ne")) {
+			okay = true;
+		} else {
+			okay = false;
+		}
+		return okay;
 	}
 
 	public HashMap<String, Integer> generateEntryHash(ArrayList<ArrayList<String>> entrysOfParagraphs) {
