@@ -1,6 +1,7 @@
 package ue2.xxx;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 
 import org.w3c.dom.Node;
 
@@ -21,16 +22,36 @@ public class TaskRunner_Template {
 	public static void main(String[] args) {
 		arg = args;
 		validateAmountOfGivenInput();
-String fileLoc = "C:/Users/mcz/Desktop/temp/text";
+		String fileLoc = "C:/Users/mcz/Desktop/temp/text";
 		UE_MainProcess main = new UE_MainProcess();
-		TeiP5 readFile = main.readFile(
-				fileLoc);
-		
+		TeiP5 readFile = main.readFile(fileLoc);
+		int condition = 0;
+
 		ArrayList<ArrayList<Node>> wordsInPara = main.abstractsNeededInfos(readFile, "p", "w");
-		int condition= 0;
-		main.generateEntry(wordsInPara,condition);
+		ArrayList<ArrayList<String>> entrysOfParagraphs = main.generateEntry(wordsInPara, condition);
+		HashMap<String, Integer> generateEntryHash = main.generateEntryHash(entrysOfParagraphs);
+		ARFF_Exporter arffDoc = new ARFF_Exporter(generateEntryHash);
+		ArrayList<String> trashParagraphs = new ArrayList<>();
+		for (int i = 0; i < entrysOfParagraphs.size(); i++) {
+			ArrayList<String> paragraph = entrysOfParagraphs.get(i);
+			if(paragraph.size()<=0){
+				String trashLine = i+" "+paragraph.toString();
+				trashParagraphs.add(trashLine);
+			}
+			else{
+				arffDoc.attachDataToList(paragraph);
+			}
+		}
+		// System.out.println(arffDoc.exportAttributesToString());
+//		 System.out.println(arffDoc.exportDatalistToString());
+		 arffDoc.exportMeToFile("./log/arffDoc.frame");
 
-
+		System.out.println(main.uniqueWords);
+		System.out.println("Paragraphs " + wordsInPara.size());
+		System.out.println("Paragraphs words " + entrysOfParagraphs.size());
+		System.out.println("UniqureWord:" + main.uniqueWords);
+		System.out.println(trashParagraphs);
+		System.out.println(trashParagraphs.size());
 	}
 
 	/**
