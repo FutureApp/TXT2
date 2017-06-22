@@ -4,7 +4,8 @@ import java.io.File;
 
 public class MyoWriter {
 
-	private static final String projectSuffix = ".log";
+//	private static final String projectSuffix = ".log";
+	private static final String projectSuffix = "";
 
 	public static void writeToLog(String filename, String content) {
 		File file = new File(Pather.toLog + filename + projectSuffix);

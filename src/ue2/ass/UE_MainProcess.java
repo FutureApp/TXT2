@@ -19,6 +19,11 @@ public class UE_MainProcess {
 	int wCounter = 0;
 	int uniqueWords = 0;
 
+	/**
+	 * Reads the Tei file
+	 * @param pathTotp5FileLocation Location of the file as string.
+	 * @return The TeiP5 object.
+	 */
 	public TeiP5 readFile(String pathTotp5FileLocation) {
 		System.out.println("Start loading");
 		File tp5File = new File(pathTotp5FileLocation);
@@ -27,11 +32,21 @@ public class UE_MainProcess {
 		return loadTei5Document;
 	}
 
+	/**
+	 * Abstracts all para of the file
+	 * @param file file where to extract fromm
+	 * @return the paras.
+	 */
 	public NodeList abstractsParagraphs(TeiP5 file) {
 		NodeList paragraphs = file.getDocument().getElementsByTagName("p");
 		return paragraphs;
 	}
 
+	/**
+	 * Calcs the neva combination
+	 * @param wordsInPara the paragraphs
+	 * @return the neva com.
+	 */
 	private ArrayList<ArrayList<String>> abstarctsCombinationOfNEVA(ArrayList<ArrayList<Node>> wordsInPara) {
 		int bcounter = 0;
 		ArrayList<ArrayList<String>> result = new ArrayList<>();
@@ -67,6 +82,11 @@ public class UE_MainProcess {
 		return result;
 	}
 
+	/**
+	 * Filter if neva conform
+	 * @param typeOfWord POS
+	 * @return true if conform.
+	 */
 	private Boolean neededLemmaBasedNEVA(String typeOfWord) {
 		Boolean okay = false;
 		String partLow = typeOfWord.toLowerCase();
@@ -86,6 +106,11 @@ public class UE_MainProcess {
 		return okay;
 	}
 
+	/**
+	 * Abstracs the AWF conforms
+	 * @param wordsInPara the specific word
+	 * @return the AWF
+	 */
 	private ArrayList<ArrayList<String>> abstarctsCombinationOfAWF(ArrayList<ArrayList<Node>> wordsInPara) {
 		int bcounter = 0;
 		ArrayList<ArrayList<String>> result = new ArrayList<>();
@@ -117,6 +142,13 @@ public class UE_MainProcess {
 		return result;
 	}
 
+	/**
+	 * The abstractor
+	 * @param teiP5 the doc
+	 * @param highestTagOfClustering highest cluster (p)
+	 * @param smallestTagOfClustering smallest cluster (w)
+	 * @return
+	 */
 	public ArrayList<ArrayList<Node>> abstractsNeededInfos(TeiP5 teiP5, String highestTagOfClustering,
 			String smallestTagOfClustering) {
 		ArrayList<ArrayList<Node>> docResult = new ArrayList<>();
@@ -161,6 +193,12 @@ public class UE_MainProcess {
 		return result;
 	}
 
+	/**
+	 * Generates the entry based on.
+	 * @param wordsInPara POS
+	 * @param condition Con
+	 * @return
+	 */
 	public ArrayList<ArrayList<String>> generateEntry(ArrayList<ArrayList<Node>> wordsInPara, int condition) {
 		ArrayList<ArrayList<String>> result = new ArrayList<>();
 		switch (condition) {
@@ -180,6 +218,11 @@ public class UE_MainProcess {
 		return result;
 	}
 
+	/**
+	 * Abs. the NNNE 
+	 * @param wordsInPara word in para
+	 * @return 
+	 */
 	private ArrayList<ArrayList<String>> abstarctsCombinationOfNNNE(ArrayList<ArrayList<Node>> wordsInPara) {
 		int bcounter = 0;
 		ArrayList<ArrayList<String>> result = new ArrayList<>();
@@ -215,6 +258,11 @@ public class UE_MainProcess {
 		return result;
 	}
 
+	/**
+	 * Filter for nnne
+	 * @param typeOfWord the POS 
+	 * @return true if nnne conform
+	 */
 	private boolean neededLemmaBasedNNNE(String typeOfWord) {
 		Boolean okay = false;
 		String partLow = typeOfWord.toLowerCase();
@@ -228,6 +276,11 @@ public class UE_MainProcess {
 		return okay;
 	}
 
+	/**
+	 * Generate the hash entrys
+	 * @param entrysOfParagraphs
+	 * @return
+	 */
 	public HashMap<String, Integer> generateEntryHash(ArrayList<ArrayList<String>> entrysOfParagraphs) {
 		HashMap<String, Integer> result = new HashMap<>();
 		int posIndex = 0;

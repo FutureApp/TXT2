@@ -15,6 +15,10 @@ public class ARFF_Exporter {
 
 	ArrayList<ArrayList<Boolean>> dataList = new ArrayList<>();
 
+	/**
+	 * cons
+	 * @param headersByKey Header by keys
+	 */
 	public ARFF_Exporter(HashMap<String, Integer> headersByKey) {
 		super();
 		this.headersByKey = headersByKey;
@@ -22,6 +26,11 @@ public class ARFF_Exporter {
 		this.listSize = headersByKey.size();
 	}
 
+	/**
+	 * Sorted map
+	 * @param headersByKey2 hash-map to retrun sorted
+	 * @return the sorted Map
+	 */
 	private TreeMap<Integer, String> generateHeaderyByIndex(HashMap<String, Integer> headersByKey2) {
 		TreeMap<Integer, String> result = new TreeMap<Integer, String>();
 		headersByKey2.forEach((k, v) -> {
@@ -30,8 +39,12 @@ public class ARFF_Exporter {
 		return result;
 	}
 
+	/**
+	 * Inserts new data
+	 * @param paragraph paragraps-info to add
+	 * @return The result.
+	 */
 	public ArrayList<Boolean> attachDataToList(ArrayList<String> paragraph) {
-
 		ArrayList<Boolean> result = initArrayAllFalse();
 		HashMap<String, Integer> paraAsHash = genreateParagraphHash(paragraph);
 		paraAsHash.forEach((k, v) -> {
@@ -49,6 +62,10 @@ public class ARFF_Exporter {
 		return result;
 	}
 
+	/**
+	 * Inits the an false array
+	 * @return The false array.
+	 */
 	private ArrayList<Boolean> initArrayAllFalse() {
 		ArrayList<Boolean> result = new ArrayList<>();
 		for (int i = 0; i < listSize; i++) {
@@ -57,6 +74,11 @@ public class ARFF_Exporter {
 		return result;
 	}
 
+	/**
+	 * Generates the Hashmap based on the paragraph info
+	 * @param paragraph The pragraph
+	 * @return The Result of calc.
+	 */
 	private HashMap<String, Integer> genreateParagraphHash(ArrayList<String> paragraph) {
 		HashMap<String, Integer> result = new HashMap<>();
 		for (String key : paragraph) {
@@ -69,6 +91,10 @@ public class ARFF_Exporter {
 		return result;
 	}
 
+	/**
+	 * Exports the @att of of all att.
+	 * @return the atts
+	 */
 	public String exportAttributesToString() {
 		StringBuilder builder = new StringBuilder();
 		headersByIndex.forEach((posInList, lemmaPlusPart) -> {
@@ -85,6 +111,10 @@ public class ARFF_Exporter {
 		return builder.toString();
 	}
 
+	/**
+	 * Exportes the datalist to string
+	 * @return the data-list entrys
+	 */
 	public String exportDatalistToString() {
 		String resString = "";
 		StringBuilder result = new StringBuilder();
@@ -110,6 +140,11 @@ public class ARFF_Exporter {
 
 	}
 
+	/**
+	 * Returns the ration of ture and false
+	 * @param dataListEntry The datalist where the t and f are based.
+	 * @return the ratio.
+	 */
 	private String ratioTVsF(ArrayList<Boolean> dataListEntry) {
 		String result = "";
 		int t = 0;
@@ -124,8 +159,12 @@ public class ARFF_Exporter {
 		return result;
 	}
 
-	public void exportMeToFile(String pathOfFile) {
-		MyoWriter.writeToLog(pathOfFile, "@relation myTest");
-		MyoWriter.addToLog(pathOfFile, exportAttributesToString() + exportDatalistToString());
+	/**
+	 * Exports the information of this class to a file.
+	 * @param pathOfDir the Path to the dir where to save.
+	 */
+	public void exportMeToFile(String pathOfDir) {
+		MyoWriter.writeToLog(pathOfDir, "@relation myTest");
+		MyoWriter.addToLog(pathOfDir, exportAttributesToString() + exportDatalistToString());
 	}
 }
