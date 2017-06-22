@@ -1,4 +1,4 @@
-package ue2.xxx;
+package ue2.ass;
 
 public class XpathTeiP5 {
 	

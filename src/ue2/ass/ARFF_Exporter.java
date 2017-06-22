@@ -1,4 +1,4 @@
-package ue2.xxx;
+package ue2.ass;
 
 import java.util.ArrayList;
 import java.util.HashMap;
