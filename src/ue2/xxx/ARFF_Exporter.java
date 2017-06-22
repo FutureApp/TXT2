@@ -4,8 +4,6 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.TreeMap;
 
-import javax.swing.text.AbstractDocument.LeafElement;
-
 import xgeneral.modules.MyoWriter;
 import xgeneral.modules.SystemMessage;
 
@@ -107,45 +105,6 @@ public class ARFF_Exporter {
 			String ratioTVsF = ratioTVsF(dataListEntry);
 			System.out.println(i + " " + dataListEntry.size() + " " + ratioTVsF);
 		}
-		// result.append("@data");
-		// result.append(System.lineSeparator());
-		// String resString = "";
-		// for (int i = 0; i < dataList.size(); i++) {
-		// ArrayList<Boolean> paraBolList = dataList.get(i);
-		// String partResult = "" + i +" ";
-		// for (int j = 0; j < paraBolList.size(); j++) {
-		// Boolean item = paraBolList.get(j);
-		// if (item == false)
-		// partResult += " ?,";
-		// else
-		// partResult += " t,";
-		// }
-		// partResult = partResult.substring(1, partResult.length() - 1);
-		// System.out.println(paraBolList);
-		// System.out.println(partResult);
-		// try {
-		// Thread.sleep(3000);
-		// } catch (InterruptedException e) {
-		// // TODO Auto-generated catch block
-		// e.printStackTrace();
-		// }
-		// resString += partResult +System.lineSeparator();
-		// }
-		// for (int i = 0; i < dataList.size(); i++) {
-		// ArrayList<Boolean> paraBolList = dataList.get(i);
-		// StringBuilder partResult = new StringBuilder(" " + i + " " +
-		// dataList.get(i).size());
-		// for (Boolean item : paraBolList) {
-		// if (item == false)
-		// partResult.append(" ?,");
-		// else
-		// partResult.append(" t,");
-		// }
-		// result.append(partResult.subSequence(1, partResult.length() - 1) +
-		// System.lineSeparator());
-		// System.out.println(dataList.get(i));
-		// System.out.println(partResult);
-		// }
 		resString = result.toString();
 		return resString;
 
